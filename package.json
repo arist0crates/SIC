@@ -24,6 +24,7 @@
     "core-js": "^2.5.4",
     "dat.gui": "^0.7.3",
     "firebase": "4.12.1",
+    "firebase-admin": "^6.4.0",
     "ng-toast": "^2.0.0",
     "ngx-toastr": "^9.1.1",
     "orbit-controls-es6": "^2.0.0",

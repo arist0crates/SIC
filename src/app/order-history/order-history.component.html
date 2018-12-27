@@ -4,8 +4,8 @@
 </div>
 
 <div>
-  <button type="button" class=b >Cancel</button>
-  <button type="button" class=b>OK</button>
+  <button type="button" class=b>Cancel</button>
+  <button type="button" class=b (click)="getOrders()">OK</button>
 </div>
 
 <br>
@@ -27,6 +27,10 @@
 </div>
 
 <div>
-  <button type="button" class=b >Cancel</button>
+  <button type="button" class=b>Cancel</button>
   <button type="button" class=b>OK</button>
 </div>
+
+<li *ngFor="let order of orders">
+  <span class="badge">{{order._id}}----{{order.state}}----{{order.datePlaced}}</span>
+</li>
