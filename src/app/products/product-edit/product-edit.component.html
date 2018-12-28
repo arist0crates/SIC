@@ -57,7 +57,7 @@
               <th>Product</th>
               <th> X </th>
             </tr>
-            <tr *ngFor="let product of lproducts; let i = index">
+            <tr *ngFor="let product of lsubProducts; let i = index">
               <td>{{i+1}}</td>
               <td>{{product.name}}</td>
               <td>
@@ -78,7 +78,7 @@
               <th>Product</th>
               <th> V </th>
             </tr>
-            <tr *ngFor="let product of products; let i = index">
+            <tr *ngFor="let product of lproducts; let i = index">
               <td>{{i+1}}</td>
               <td>{{product.name}}</td>
               <td>
