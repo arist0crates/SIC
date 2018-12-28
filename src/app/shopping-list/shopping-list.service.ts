@@ -67,7 +67,7 @@ export class ShoppingListService {
     this.order.orderItems = [...this.getProducts()];
     console.log(this.order.orderItems);
     if (this.order.orderItems.length > 0) {
-      this.http.post('http://localhost:8080/orders', this.order)
+      this.http.post('https://sic-e.herokuapp.com/orders', this.order)
         .toPromise()
         .catch();
       this.showSuccess();
