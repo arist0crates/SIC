@@ -19,6 +19,8 @@ export class ProductEditComponent implements OnInit {
   product: Product;
   lcategory: Category[];
   lmaterialfinish: MaterialFinish[];
+  lproducts: Product[];
+  newProduct: Product;
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -34,8 +36,10 @@ export class ProductEditComponent implements OnInit {
           this.initForm();
         }
       );
-      this.getCategories();
-      this.getMaterialFinish();
+
+    this.getCategories();
+    this.getMaterialFinish();
+    this.getProducts();
   }
 
   onSubmit() {
@@ -134,7 +138,15 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  getCategories(){
+  getProducts(){
+    this.productService.getProducts()
+      .then((lproducts) => {
+        this.lproducts = lproducts;
+        console.log(this.lproducts);
+      });
+  }
+
+  getCategories() {
     this.productService.getCategory()
       .then((lcategory) => {
         this.lcategory = lcategory;
@@ -148,6 +160,13 @@ export class ProductEditComponent implements OnInit {
         this.lmaterialfinish = lmaterialfinish;
         console.log(this.lmaterialfinish);
       });
+  }
+
+  onDeleteSubProduct(index: number) {
+    this.product.products.splice(index, 1);
+  }
+  onAddSubProduct(index: number) {
+    this.product.products.push(this.lproducts[index]);
   }
 
 }

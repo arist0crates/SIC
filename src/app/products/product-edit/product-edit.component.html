@@ -21,22 +21,74 @@
         <br>
       </div>
       <div>
-        <label for="dimension-height">Height</label>
-        <input type="text" id="height-text" formControlName="name" class="form-control">
-        <label for="dimension-width">Width</label>
-        <input type="text" id="Width-text" formControlName="name" class="form-control">
-        <label for="dimension-depth">Depth</label>
-        <input type="text" id="depth-text" formControlName="name" class="form-control">
+        <label for="dimension-MaxHeight">Min-Height</label>
+        <input type="text" id="MaxHeight-text" formControlName="name" class="form-control">
+        <label for="dimension-MinHeight">Max-Height</label>
+        <input type="text" id="MinHeight-text" formControlName="name" class="form-control">
+
+        <label for="dimension-MinWidth">Min-Width</label>
+        <input type="text" id="MinWidth-text" formControlName="name" class="form-control">
+        <label for="dimension-MinWidth">Max-Width</label>
+        <input type="text" id="MinWidth-text" formControlName="name" class="form-control">
+
+
+        <label for="dimension-MaxDepth">Min-Depth</label>
+        <input type="text" id="MaxDepth-text" formControlName="name" class="form-control">
+        <label for="dimension-MaxDepth">Max-Depth</label>
+        <input type="text" id="MaxDepth-text" formControlName="name" class="form-control">
         <br>
       </div>
       <div>
         <label for="material-finish">Material-Finish</label>
         <br>
         <select #state_id id2="state_id2">
-          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish"> {{materialfinish.material.name}} - {{materialfinish.name}}</option>
+          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish">
+            {{materialfinish.material.name}} - {{materialfinish.name}}</option>
         </select>
         <br>
         <br>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Associated Products</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th> X </th>
+            </tr>
+            <tr *ngFor="let product of lproducts; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{product.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-danger" (click)="onDeleteSubProduct(i)">x</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Add Products</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th> V </th>
+            </tr>
+            <tr *ngFor="let product of products; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{product.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-success" (click)="onAddSubProduct(i)">v</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
       </div>
       <div class="row">
         <div class="col-xs-12">
