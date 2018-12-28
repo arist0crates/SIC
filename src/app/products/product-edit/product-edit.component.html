@@ -3,12 +3,6 @@
     <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Save</button>
-          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-xs-12">
           <div class="form-group">
             <label for="name">Name</label>
             <input type="text" id="name" formControlName="name" class="form-control">
@@ -21,9 +15,34 @@
         <label for="Father-Category">Father-Category</label>
         <br>
         <select #state_id id="state_id">
-          <option [value]="category" *ngFor="let category of lcategory"
-          >{{category.name}}</option>
+          <option [value]="category" *ngFor="let category of lcategory">{{category.name}}</option>
         </select>
+        <br>
+        <br>
+      </div>
+      <div>
+        <label for="dimension-height">Height</label>
+        <input type="text" id="height-text" formControlName="name" class="form-control">
+        <label for="dimension-width">Width</label>
+        <input type="text" id="Width-text" formControlName="name" class="form-control">
+        <label for="dimension-depth">Depth</label>
+        <input type="text" id="depth-text" formControlName="name" class="form-control">
+        <br>
+      </div>
+      <div>
+        <label for="material-finish">Material-Finish</label>
+        <br>
+        <select #state_id id2="state_id2">
+          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish"> {{materialfinish.material.name}} - {{materialfinish.name}}</option>
+        </select>
+        <br>
+        <br>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
       </div>
 
       <!--

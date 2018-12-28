@@ -18,6 +18,7 @@ export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
   product: Product;
   lcategory: Category[];
+  lmaterialfinish: MaterialFinish[];
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -34,6 +35,7 @@ export class ProductEditComponent implements OnInit {
         }
       );
       this.getCategories();
+      this.getMaterialFinish();
   }
 
   onSubmit() {
@@ -137,6 +139,14 @@ export class ProductEditComponent implements OnInit {
       .then((lcategory) => {
         this.lcategory = lcategory;
         console.log(this.lcategory);
+      });
+  }
+
+  getMaterialFinish() {
+    this.productService.getMaterialFinish()
+      .then((lmaterialfinish) => {
+        this.lmaterialfinish = lmaterialfinish;
+        console.log(this.lmaterialfinish);
       });
   }
 

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Product } from './product.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
+import { MaterialFinish } from '../materialfinishes/materialfinish.model';
 
 @Injectable()
 export class ProductService {
@@ -61,6 +62,15 @@ export class ProductService {
       .get('https://sicgc.azurewebsites.net/api/Category')
       .toPromise()
       .then(res => <Category[]>res)
+      .then(data => { return data; });
+  }
+
+  getMaterialFinish() {
+    return this
+      .http
+      .get('https://sicgc.azurewebsites.net/api/MaterialFinish')
+      .toPromise()
+      .then(res => <MaterialFinish[]>res)
       .then(data => { return data; });
   }
 
