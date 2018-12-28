@@ -1,10 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './product.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
+import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
+
 
 @Injectable()
 export class ProductService {
@@ -12,7 +14,7 @@ export class ProductService {
 
   private products: Product[] = [];
 
-  constructor(private slService: ShoppingListService, public http: HttpClient) {}
+  constructor(private slService: ShoppingListService, public http: HttpClient, private authService: AuthService) {}
 
   setProducts(products: Product[]) {
     this.products = products;
@@ -20,19 +22,32 @@ export class ProductService {
   }
 
   getProducts() {
-
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    httpOptions.headers.append('Authorization', 'Bearer'+ token);
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product')
+      .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
       .toPromise()
       .then(res => <Product[]>res)
       .then(data => {return data; });
   }
 
   getProduct(index: number) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+      })
+    };
+    httpOptions.headers.append('Authorization', 'Bearer'+ token);
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product/'+ index)
+      .get('https://sicgc.azurewebsites.net/api/Product/'+ index, httpOptions)
       .toPromise()
       .then(res => <Product>res)
       .then(data => {return data; });
