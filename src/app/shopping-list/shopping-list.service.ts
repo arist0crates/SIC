@@ -17,12 +17,6 @@ export class ShoppingListService {
   private products: Product[] = [];
   private order: Order = new Order();
 
-  private httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'application/json',
-    })
-  };
-
   constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
   getProducts() {

@@ -31,6 +31,7 @@ export class ProductService {
         'Accept': 'application/json'
       })
     };
+    console.log(token.toString());
     return this
       .http
       .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
