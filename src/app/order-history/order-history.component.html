@@ -1,34 +1,34 @@
 <div>
-  Init Date : <input type="date" name="Init_Date" class=b>
-  End Date : <input type="date" name="End_Date" class=b>
+  Init Date : <input #dt_init type="date" name="Init_Date" id="dt_init"class=b>
+  End Date : <input #dt_end type="date" name="End_Date" id="dt_end" class=b>
 </div>
 
 <div>
   <button type="button" class=b>Cancel</button>
-  <button type="button" class=b (click)="getOrders()">OK</button>
+  <button type="button" class=b (click)="getOrdersbyDate(dt_init.value,dt_end.value)">OK</button>
 </div>
 
 <br>
 <br>
 
 <div>
-  <select>
+  <select #state_id id="state_id">
     <option value="0">Select State:</option>
-    <option value="1">Submited Order</option>
-    <option value="2">Validated Order</option>
-    <option value="3">Assigned Order</option>
-    <option value="4">In Production Order</option>
-    <option value="5">Packing Order</option>
-    <option value="6">Ready To Ship Order</option>
-    <option value="7">Shipped Order</option>
-    <option value="8">Delivered Order</option>
-    <option value="9">Received Order</option>
+    <option value="SUBMITTED">Submitted Order</option>
+    <option value="VALIDATED">Validated Order</option>
+    <option value="ASSIGNED">Assigned Order</option>
+    <option value="IN_PRODUCTION">In Production Order</option>
+    <option value="PACKING">Packing Order</option>
+    <option value="READY_TO_SHIP">Ready To Ship Order</option>
+    <option value="SHIPPED">Shipped Order</option>
+    <option value="DELIVERED">Delivered Order</option>
+    <option value="RECEIVED">Received Order</option>
   </select>
 </div>
 
 <div>
   <button type="button" class=b>Cancel</button>
-  <button type="button" class=b>OK</button>
+  <button type="button" class=b (click)="getOrdersbyState(state_id.value)">OK</button>
 </div>
 
 <li *ngFor="let order of orders">

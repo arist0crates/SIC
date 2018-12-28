@@ -10,7 +10,7 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
         <li routerLinkActive="active"><a routerLink="/engine">Preview Your Product</a></li>
         <li routerLinkActive="active"><a routerLink="/order">Order</a></li>
-        <li routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
+        <li *ngIf="isAuthenticated()" routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!isAuthenticated()">

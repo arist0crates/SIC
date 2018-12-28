@@ -13,11 +13,20 @@ const httpOptions = {
 })
 export class OrderHistoryService {
 
-  private url = 'http://localhost:8080/orders/orderHistory/20'
+  private url = 'http://localhost:8080/orders/orderHistory/'
   constructor(private http: HttpClient) { }
 
-  getOrders(): Observable<Order[]> {
-    return this.http.get<Order[]>(this.url);
+  getOrders(id:string): Observable<Order[]> {
+    return this.http.get<Order[]>(this.url + id);
   }
+
+  getOrdersbyDate(id:string,data_init:string,data_end:string){
+    return this.http.get<Order[]>(this.url + id + "/" + data_init + "/" + data_end);
+  }
+
+  getOrderbyState(id:string,state:string){
+    return this.http.get<Order[]>(this.url + id + "/" + state);
+  }
+
 }
 

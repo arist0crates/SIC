@@ -63,6 +63,9 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.editedItem.dimensions.minHeight = this.heightSliderVal;
     this.editedItem.dimensions.minDepth = this.depthSliderVal;
     this.editedItem.dimensions.minWidth = this.widthSliderVal;
+    this.editedItem.dimensions.maxHeight = this.heightSliderVal;
+    this.editedItem.dimensions.maxDepth = this.depthSliderVal;
+    this.editedItem.dimensions.maxWidth = this.widthSliderVal;
     const value = form.value;
     console.log("NAME:" + value.name);
     const newProduct = new Product(value.name, this.editedItem.productId, this.editedItem.possibleMaterialFinishes, this.editedItem.products, this.editedItem.dimensions, this.editedItem.category);
