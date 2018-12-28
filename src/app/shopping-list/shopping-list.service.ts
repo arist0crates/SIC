@@ -8,6 +8,7 @@ import { NgForm } from '@angular/forms';
 import { City } from '../cities/city.model';
 import { Location } from "../locations/location.model";
 import { DeliveryAddress } from "../deliveryAddresses/deliveryaddress.model";
+import { AuthService } from '../auth/auth.service';
 
 @Injectable()
 export class ShoppingListService {
@@ -22,7 +23,7 @@ export class ShoppingListService {
     })
   };
 
-  constructor(public http: HttpClient, private toastr: ToastrService) { }
+  constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
   getProducts() {
     return this.products.slice();
@@ -57,6 +58,15 @@ export class ShoppingListService {
   }
 
   onOrder(orderForm: NgForm) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type':  'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer '+ token,
+        'Accept': 'application/json'
+      })
+    };
     console.log('Cheguei2!!!!!!!!');
     console.log('Cheguei3!!!!!!!!' + orderForm.value);
     let location = new Location(orderForm.controls.latitude.value, orderForm.controls.longitude.value);
@@ -67,7 +77,7 @@ export class ShoppingListService {
     this.order.orderItems = [...this.getProducts()];
     console.log(this.order.orderItems);
     if (this.order.orderItems.length > 0) {
-      this.http.post('https://sic-e.herokuapp.com/orders', this.order)
+      this.http.post('https://sic-e.herokuapp.com/orders', this.order, httpOptions)
         .toPromise()
         .catch();
       this.showSuccess();
