@@ -15,6 +15,18 @@
           </div>
         </div>
       </div>
+      <div>
+        <label for="Child-Category">Child-Category</label>
+        <input type="text" id="category-child" formControlName="name" class="form-control">
+        <label for="Father-Category">Father-Category</label>
+        <br>
+        <select #state_id id="state_id">
+          <option [value]="category" *ngFor="let category of lcategory"
+          >{{category.name}}</option>
+        </select>
+      </div>
+
+      <!--
       <div class="row">
         <div class="col-xs-12" formArrayName="products">
           <div class="row" *ngFor="let productsCtrl of getControls(); let i = index" [formGroupName]="i" style="margin-top: 10px;">
@@ -33,6 +45,7 @@
           </div>
         </div>
       </div>
+    -->
     </form>
   </div>
 </div>
