@@ -31,7 +31,7 @@ export class ProductService {
   getProduct(index: number) {
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product'+ index)
+      .get('https://sicgc.azurewebsites.net/api/Product/'+ index)
       .toPromise()
       .then(res => <Product>res)
       .then(data => {return data; });
