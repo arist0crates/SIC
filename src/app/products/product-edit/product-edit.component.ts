@@ -20,6 +20,7 @@ export class ProductEditComponent implements OnInit {
   lcategory: Category[];
   lmaterialfinish: MaterialFinish[];
   lproducts: Product[];
+  lsubProducts: Array <Product> = [];
   newProduct: Product;
 
   constructor(private route: ActivatedRoute,
@@ -138,7 +139,7 @@ export class ProductEditComponent implements OnInit {
     });
   }
 
-  getProducts(){
+  getProducts() {
     this.productService.getProducts()
       .then((lproducts) => {
         this.lproducts = lproducts;
@@ -163,10 +164,10 @@ export class ProductEditComponent implements OnInit {
   }
 
   onDeleteSubProduct(index: number) {
-    this.product.products.splice(index, 1);
-  }
-  onAddSubProduct(index: number) {
-    this.product.products.push(this.lproducts[index]);
+    this.lsubProducts.splice(index, 1);
   }
 
+  onAddSubProduct(index: number) {
+    this.lsubProducts.push(this.lproducts[index]);
+  }
 }
