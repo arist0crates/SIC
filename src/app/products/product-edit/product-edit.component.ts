@@ -17,6 +17,7 @@ export class ProductEditComponent implements OnInit {
   editMode = false;
   productForm: FormGroup;
   product: Product;
+  lcategory: Category[];
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -32,6 +33,7 @@ export class ProductEditComponent implements OnInit {
           this.initForm();
         }
       );
+      this.getCategories();
   }
 
   onSubmit() {
@@ -128,6 +130,14 @@ export class ProductEditComponent implements OnInit {
       'productCategory': new FormControl(productCategory, Validators.required),
 
     });
+  }
+
+  getCategories(){
+    this.productService.getCategory()
+      .then((lcategory) => {
+        this.lcategory = lcategory;
+        console.log(this.lcategory);
+      });
   }
 
 }
