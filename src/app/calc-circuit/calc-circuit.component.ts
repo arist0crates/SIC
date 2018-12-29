@@ -13,10 +13,17 @@ export class CalcCircuitComponent implements OnInit {
   constructor(
     private calcCircuitService: CalcCircuitService,
     private authService: AuthService
-  ) { }
+  ) {
+    this.output = {
+      distance : -1,
+      circuit: "[]"
+    }
+   }
 
   ngOnInit() {
-    this.calcCircuit();
+    //this.calcCircuit();
+    this.calcCircuitService.calcCircuit().subscribe(output => this.output = output);
+    console.log(this.output);
   }
 
   calcCircuit(): void {
