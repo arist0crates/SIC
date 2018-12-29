@@ -4,9 +4,11 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 
 import { ProductService } from '../product.service';
 import { Product } from '../product.model';
+import { ProductDTO } from '../product.model';
 import { MaterialFinish } from 'src/app/materialfinishes/materialfinish.model';
 import { Category } from 'src/app/categories/category.model';
-
+import { Dimension } from 'src/app/dimensions/dimension.model';
+import { DimensionDTO } from 'src/app/dimensions/dimension.model';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -54,14 +56,56 @@ export class ProductEditComponent implements OnInit {
     this.onCancel();
   }
 
-
+  /*
+    onSubmit2(productForm: FormGroup) {
+  
+      this.productForm.value['name'],
+  
+        const newCategory = new Category(
+        this.productForm.value['categoryChild']
+        this.productForm.value['categoryFather']),
+  
+      const newDimension = new Dimension(
+        this.productForm.value['productDimensionminHeight']
+        this.productForm.value['productDimensionmaxHeight'],
+        this.productForm.value['productDimensionminWidth'],
+        this.productForm.value['productDimensionmaxWidth'],
+        this.productForm.value['productDimensionminDepth'],
+        this.productForm.value['productDimensionmaxDepth']);
+  
+      this.productForm.value['materialFinish'],
+        this.lsubProducts;
+  
+      this.onCancel();
+  
+    }*/
   onSubmit2(productForm: FormGroup) {
+
+    const newDimension = new DimensionDTO(
+      this.productForm.value['productDimensionminHeight'],
+      this.productForm.value['productDimensionmaxHeight'],
+      this.productForm.value['productDimensionminWidth'],
+      this.productForm.value['productDimensionmaxWidth'],
+      this.productForm.value['productDimensionminDepth'],
+      this.productForm.value['productDimensionmaxDepth']
+    );
+
+    
+    const newProductDTO = new ProductDTO(
+      this.productForm.value['name'],
+      this.lmaterialfinish,
+      //this.productForm.value['materialFinish'],
+      this.lsubProducts,
+      newDimension,
+      this.lcategory[1]);
+      // this.productForm.value['categoryFather']);
+
+
     console.log("-----------------------------------");
     console.log(this.productForm.value['name']);
-    
+
     console.log(this.productForm.value['categoryChild']);
-    //console.log(this.productForm.value['categoryFather']);
-    //console.log(this.category);
+    console.log(this.productForm.value['categoryFather']);
 
     console.log(this.productForm.value['productDimensionminHeight']);
     console.log(this.productForm.value['productDimensionmaxHeight']);
@@ -72,8 +116,11 @@ export class ProductEditComponent implements OnInit {
     console.log(this.productForm.value['productDimensionminDepth']);
     console.log(this.productForm.value['productDimensionmaxDepth']);
 
+    console.log(this.productForm.value['materialFinish']);
+
     console.log(this.lsubProducts);
 
+    this.productService.postProduct(newProductDTO);
     this.onCancel();
 
   }
@@ -91,9 +138,10 @@ export class ProductEditComponent implements OnInit {
     let productDimensionminWidth: number;
     let productDimensionmaxWidth: number;
     let productCategory: Category;
+    let materialFinish: String
 
     this.productForm = new FormGroup({
-    //  'productId': new FormControl(productId, Validators.required),
+      //  'productId': new FormControl(productId, Validators.required),
       'name': new FormControl(productName, Validators.required),
       'categoryChild': new FormControl(categoryChild, Validators.required),
       'categoryFather': new FormControl(categoryFather, Validators.required),
@@ -104,7 +152,7 @@ export class ProductEditComponent implements OnInit {
       'productDimensionmaxDepth': new FormControl(productDimensionmaxDepth, Validators.required),
       'productDimensionminWidth': new FormControl(productDimensionminWidth, Validators.required),
       'productDimensionmaxWidth': new FormControl(productDimensionmaxWidth, Validators.required),
-      //'productCategory': new FormControl(productCategory, Validators.required),
+      'materialFinish': new FormControl(materialFinish, Validators.required),
 
     });
 

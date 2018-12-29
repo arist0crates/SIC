@@ -2,10 +2,12 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Product } from './product.model';
+import { ProductDTO } from './product.model';
 import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
+const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
 @Injectable()
@@ -56,6 +58,28 @@ export class ProductService {
       .toPromise()
       .then(res => <Product>res)
       .then(data => {return data; });
+  }
+
+
+
+  postProduct(newProduct : ProductDTO) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      })
+    };
+    return this
+      .http
+      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+      {
+        headers: headers
+      }).subscribe(data => {
+        console.log(data);
+      });
   }
 
   addProductToShoppingList(product: Product) {
