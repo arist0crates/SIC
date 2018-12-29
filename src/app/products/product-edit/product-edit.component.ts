@@ -14,14 +14,14 @@ import { Category } from 'src/app/categories/category.model';
 })
 export class ProductEditComponent implements OnInit {
   id: number;
-  editMode = false;
   productForm: FormGroup;
   product: Product;
   lcategory: Category[];
   lmaterialfinish: MaterialFinish[];
   lproducts: Product[];
-  lsubProducts: Array <Product> = [];
+  lsubProducts: Array<Product> = [];
   newProduct: Product;
+
 
   constructor(private route: ActivatedRoute,
     private productService: ProductService,
@@ -33,7 +33,6 @@ export class ProductEditComponent implements OnInit {
       .subscribe(
         (params: Params) => {
           this.id = +params['id'];
-          this.editMode = params['id'] != null;
           this.initForm();
         }
       );
@@ -51,40 +50,39 @@ export class ProductEditComponent implements OnInit {
       this.productForm.value['products'],
       this.productForm.value['dimensions'],
       this.productForm.value['category']);
-    if (this.editMode) {
-      this.productService.updateProduct(this.id, this.productForm.value);
-    } else {
-      this.productService.addProduct(this.productForm.value);
-    }
+
     this.onCancel();
   }
 
-  onAddProduct() {
-    (<FormArray>this.productForm.get('products')).push(
-      new FormGroup({
-        'name': new FormControl(null, Validators.required)
 
-      })
-    );
-  }
+  onSubmit2(productForm: FormGroup) {
+    console.log("-----------------------------------");
+    console.log(this.productForm.value['name']);
+    
+    console.log(this.productForm.value['categoryChild']);
+    //console.log(this.productForm.value['categoryFather']);
+    //console.log(this.category);
 
-  onDeleteProduct(index: number) {
-    (<FormArray>this.productForm.get('products')).removeAt(index);
-  }
+    console.log(this.productForm.value['productDimensionminHeight']);
+    console.log(this.productForm.value['productDimensionmaxHeight']);
 
-  onCancel() {
-    this.router.navigate(['../'], { relativeTo: this.route });
-  }
+    console.log(this.productForm.value['productDimensionminWidth']);
+    console.log(this.productForm.value['productDimensionmaxWidth']);
 
-  getControls() {
-    return (<FormArray>this.productForm.get('products')).controls,
-      (<FormArray>this.productForm.get('possibleMaterialFinishes')).controls;
+    console.log(this.productForm.value['productDimensionminDepth']);
+    console.log(this.productForm.value['productDimensionmaxDepth']);
+
+    console.log(this.lsubProducts);
+
+    this.onCancel();
+
   }
 
   private initForm() {
     let productId: number;
     let productName: string;
-    let productProducts: Product[];
+    let categoryChild: string;
+    let categoryFather: string;
     let productPossibleMaterialFinishes: MaterialFinish[];
     let productDimensionminHeight: number;
     let productDimensionmaxHeight: number;
@@ -94,49 +92,22 @@ export class ProductEditComponent implements OnInit {
     let productDimensionmaxWidth: number;
     let productCategory: Category;
 
-    if (this.editMode) {
-      this.productService.getProduct(this.id)
-        .then((product) => {
-          this.product = product;
-          console.log(this.product);
-        });
-      productName = this.product.name;
-      productId = this.product.productId;
-      productDimensionminHeight = this.product.dimensions.minHeight;
-      productDimensionmaxHeight = this.product.dimensions.maxHeight;
-      productDimensionminDepth = this.product.dimensions.minDepth;
-      productDimensionmaxDepth = this.product.dimensions.maxDepth;
-      productDimensionminWidth = this.product.dimensions.minWidth;
-      productDimensionmaxWidth = this.product.dimensions.maxWidth;
-      productCategory
-
-      if (this.product['products']) {
-        for (let product of this.product.products) {
-          productProducts.push(product);
-        }
-      }
-
-      if (this.product['possibleMaterialFinishes']) {
-        for (let materialFinish of this.product.possibleMaterialFinishes) {
-          productPossibleMaterialFinishes.push(materialFinish);
-        }
-      }
-    }
-
     this.productForm = new FormGroup({
-      'productId': new FormControl(productId, Validators.required),
+    //  'productId': new FormControl(productId, Validators.required),
       'name': new FormControl(productName, Validators.required),
-      'productPossibleMaterialFinishes': new FormControl(productPossibleMaterialFinishes, Validators.required),
-      'products': new FormControl(productProducts, Validators.required),
+      'categoryChild': new FormControl(categoryChild, Validators.required),
+      'categoryFather': new FormControl(categoryFather, Validators.required),
+      //'productPossibleMaterialFinishes': new FormControl(productPossibleMaterialFinishes, Validators.required),
       'productDimensionminHeight': new FormControl(productDimensionminHeight, Validators.required),
       'productDimensionmaxHeight': new FormControl(productDimensionmaxHeight, Validators.required),
       'productDimensionminDepth': new FormControl(productDimensionminDepth, Validators.required),
       'productDimensionmaxDepth': new FormControl(productDimensionmaxDepth, Validators.required),
       'productDimensionminWidth': new FormControl(productDimensionminWidth, Validators.required),
       'productDimensionmaxWidth': new FormControl(productDimensionmaxWidth, Validators.required),
-      'productCategory': new FormControl(productCategory, Validators.required),
+      //'productCategory': new FormControl(productCategory, Validators.required),
 
     });
+
   }
 
   getProducts() {
@@ -169,5 +140,23 @@ export class ProductEditComponent implements OnInit {
 
   onAddSubProduct(index: number) {
     this.lsubProducts.push(this.lproducts[index]);
+  }
+
+  onCancel() {
+    this.router.navigate(['../'], { relativeTo: this.route });
+  }
+
+  getControls() {
+    return (<FormArray>this.productForm.get('products')).controls,
+      (<FormArray>this.productForm.get('possibleMaterialFinishes')).controls;
+  }
+
+  onAddProduct() {
+    (<FormArray>this.productForm.get('products')).push(
+      new FormGroup({
+        'name': new FormControl(null, Validators.required)
+
+      })
+    );
   }
 }

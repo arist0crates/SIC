@@ -11,31 +11,31 @@
       </div>
       <div>
         <label for="Child-Category">Child-Category</label>
-        <input type="text" id="category-child" formControlName="name" class="form-control">
+        <input type="text" id="category-child" formControlName="categoryChild" class="form-control">
         <label for="Father-Category">Father-Category</label>
         <br>
-        <select #state_id id="state_id">
-          <option [value]="category" *ngFor="let category of lcategory">{{category.name}}</option>
+        <select id="category-Father"  formControlName="categoryFather" class="form-control">
+          <option [value]="category" *ngFor="let category of lcategory"  ng-selected="category">{{category.name}}</option>
+      
         </select>
         <br>
         <br>
       </div>
       <div>
         <label for="dimension-MaxHeight">Min-Height</label>
-        <input type="text" id="MaxHeight-text" formControlName="name" class="form-control">
+        <input type="text" id="MaxHeight-text" formControlName="productDimensionmaxHeight" class="form-control">
         <label for="dimension-MinHeight">Max-Height</label>
-        <input type="text" id="MinHeight-text" formControlName="name" class="form-control">
+        <input type="text" id="MinHeight-text" formControlName="productDimensionminHeight" class="form-control">
 
         <label for="dimension-MinWidth">Min-Width</label>
-        <input type="text" id="MinWidth-text" formControlName="name" class="form-control">
+        <input type="text" id="MinWidth-text" formControlName="productDimensionminWidth" class="form-control">
         <label for="dimension-MinWidth">Max-Width</label>
-        <input type="text" id="MinWidth-text" formControlName="name" class="form-control">
+        <input type="text" id="MinWidth-text" formControlName="productDimensionmaxWidth" class="form-control">
 
-
-        <label for="dimension-MaxDepth">Min-Depth</label>
-        <input type="text" id="MaxDepth-text" formControlName="name" class="form-control">
+        <label for="dimension-MinDepth">Min-Depth</label>
+        <input type="text" id="MaxDepth-text" formControlName="productDimensionminDepth" class="form-control">
         <label for="dimension-MaxDepth">Max-Depth</label>
-        <input type="text" id="MaxDepth-text" formControlName="name" class="form-control">
+        <input type="text" id="MaxDepth-text" formControlName="productDimensionmaxDepth" class="form-control">
         <br>
       </div>
       <div>
@@ -92,31 +92,10 @@
       </div>
       <div class="row">
         <div class="col-xs-12">
-          <button type="submit" class="btn btn-success" [disabled]="!productForm.valid">Save</button>
+          <button type="button" class="btn btn-success" (click)="onSubmit2()">Save</button>
           <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
         </div>
       </div>
-
-      <!--
-      <div class="row">
-        <div class="col-xs-12" formArrayName="products">
-          <div class="row" *ngFor="let productsCtrl of getControls(); let i = index" [formGroupName]="i" style="margin-top: 10px;">
-            <div class="col-xs-8">
-              <input type="text" class="form-control" formControlName="name">
-            </div>
-            <div class="col-xs-2">
-              <button type="button" class="btn btn-danger" (click)="onDeleteProduct(i)">X</button>
-            </div>
-          </div>
-          <hr>
-          <div class="row">
-            <div class="col-xs-12">
-              <button type="button" class="btn btn-success" (click)="onAddProduct()">Add Product</button>
-            </div>
-          </div>
-        </div>
-      </div>
-    -->
     </form>
   </div>
 </div>
