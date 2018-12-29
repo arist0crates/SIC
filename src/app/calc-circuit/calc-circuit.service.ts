@@ -11,7 +11,7 @@ const httpOptions = {
 })
 export class CalcCircuitService {
 
-  private url = 'http://localhost:8080/orderManager/calcCircuit'
+  private url = 'http://sic-e.herokuapp.com/orderManager/calcCircuit'
   constructor(private http: HttpClient) { }
 
   calcCircuit(): Observable<any> {
