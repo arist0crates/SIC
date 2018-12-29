@@ -12,6 +12,7 @@ import { CoreModule } from './core/core.module';
 import { EngineComponent } from './engine/engine.component';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +20,7 @@ import { OrderHistoryComponent } from './order-history/order-history.component';
     EngineComponent,
     OrderComponent,
     OrderHistoryComponent,
+    CalcCircuitComponent,
   ],
   imports: [
     BrowserModule,

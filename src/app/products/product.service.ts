@@ -31,6 +31,7 @@ export class ProductService {
         'Accept': 'application/json'
       })
     };
+    console.log(token.toString());
     return this
       .http
       .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
@@ -44,10 +45,11 @@ export class ProductService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
-        'Access-Control-Allow-Origin':'*'
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer '+ token,
+        'Accept': 'application/json'
       })
     };
-    httpOptions.headers.append('Authorization', 'Bearer'+ token);
     return this
       .http
       .get('https://sicgc.azurewebsites.net/api/Product/'+ index, httpOptions)
