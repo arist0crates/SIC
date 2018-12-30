@@ -11,6 +11,7 @@ import { ProductItemComponent } from './product-list/product-item/product-item.c
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProductPriceComponent } from './product-price/product-price.component';
+import { CollectionEditComponent } from './collection-edit/collection-edit.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { ProductPriceComponent } from './product-price/product-price.component';
     ProductEditComponent,
     ProductDetailComponent,
     ProductItemComponent,
-    ProductPriceComponent
+    ProductPriceComponent,
+    CollectionEditComponent
   ],
   imports: [
     CommonModule,

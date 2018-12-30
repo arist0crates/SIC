@@ -1,0 +1,101 @@
+<div class="row">
+  <div class="col-xs-12">
+    <form [formGroup]="productForm" (ngSubmit)="onSubmit()">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" formControlName="name" class="form-control">
+          </div>
+        </div>
+      </div>
+      <div>
+        <label for="Child-Category">Child-Category</label>
+        <input type="text" id="category-child" formControlName="categoryChild" class="form-control">
+        <label for="Father-Category">Father-Category</label>
+        <br>
+        <select id="category-Father"  formControlName="categoryFather" class="form-control">
+          <option [value]="category" *ngFor="let category of lcategory"  ng-selected="category">{{category.name}}</option>
+      
+        </select>
+        <br>
+        <br>
+      </div>
+      <div>
+        <label for="dimension-MaxHeight">Min-Height</label>
+        <input type="text" id="MaxHeight-text" formControlName="productDimensionmaxHeight" class="form-control">
+        <label for="dimension-MinHeight">Max-Height</label>
+        <input type="text" id="MinHeight-text" formControlName="productDimensionminHeight" class="form-control">
+
+        <label for="dimension-MinWidth">Min-Width</label>
+        <input type="text" id="MinWidth-text" formControlName="productDimensionminWidth" class="form-control">
+        <label for="dimension-MinWidth">Max-Width</label>
+        <input type="text" id="MinWidth-text" formControlName="productDimensionmaxWidth" class="form-control">
+
+        <label for="dimension-MinDepth">Min-Depth</label>
+        <input type="text" id="MaxDepth-text" formControlName="productDimensionminDepth" class="form-control">
+        <label for="dimension-MaxDepth">Max-Depth</label>
+        <input type="text" id="MaxDepth-text" formControlName="productDimensionmaxDepth" class="form-control">
+        <br>
+      </div>
+      <div>
+        <label for="material-finish">Material-Finish</label>
+        <br>
+        <select #state_id id2="state_id2" formControlName="materialFinish" class="form-control">
+          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish" ng-selected="category">
+            {{materialfinish.material.name}} - {{materialfinish.name}}</option>
+        </select>
+        <br>
+        <br>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Associated Products</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th> X </th>
+            </tr>
+            <tr *ngFor="let product of lsubProducts; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{product.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-danger" (click)="onDeleteSubProduct(i)">x</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Add Products</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Product</th>
+              <th> V </th>
+            </tr>
+            <tr *ngFor="let product of lproducts; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{product.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-success" (click)="onAddSubProduct(i)">v</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button type="button" class="btn btn-success" (click)="onSubmit2()">Save</button>
+          <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
