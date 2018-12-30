@@ -10,6 +10,7 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { ProductItemComponent } from './product-list/product-item/product-item.component';
 import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../shared/shared.module';
+import { ProductPriceComponent } from './product-price/product-price.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { SharedModule } from '../shared/shared.module';
     ProductListComponent,
     ProductEditComponent,
     ProductDetailComponent,
-    ProductItemComponent
+    ProductItemComponent,
+    ProductPriceComponent
   ],
   imports: [
     CommonModule,
