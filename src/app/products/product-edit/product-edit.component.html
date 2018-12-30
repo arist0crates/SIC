@@ -10,13 +10,11 @@
         </div>
       </div>
       <div>
-        <label for="Child-Category">Child-Category</label>
-        <input type="text" id="category-child" formControlName="categoryChild" class="form-control">
-        <label for="Father-Category">Father-Category</label>
         <br>
-        <select id="category-Father"  formControlName="categoryFather" class="form-control">
-          <option [value]="category" *ngFor="let category of lcategory"  ng-selected="category">{{category.name}}</option>
-      
+        <label for="name">Category</label>
+        <select id="category-Father" formControlName="categoryFather" class="form-control">
+          <option [value]="category" *ngFor="let category of lcategory" ng-selected="category">{{category.name}}</option>
+
         </select>
         <br>
         <br>
@@ -37,17 +35,64 @@
         <label for="dimension-MaxDepth">Max-Depth</label>
         <input type="text" id="MaxDepth-text" formControlName="productDimensionmaxDepth" class="form-control">
         <br>
-      </div>
-      <div>
-        <label for="material-finish">Material-Finish</label>
-        <br>
-        <select #state_id id2="state_id2" formControlName="materialFinish" class="form-control">
-          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish" ng-selected="category">
-            {{materialfinish.material.name}} - {{materialfinish.name}}</option>
-        </select>
-        <br>
         <br>
       </div>
+
+
+
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Material Finishes</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Material Finish</th>
+              <th> X </th>
+            </tr>
+            <tr *ngFor="let materialfinish of lmaterialFinishes; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{materialfinish.material.name}} {{materialfinish.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-danger" (click)="onDeletePossibleMaterialFinish(i)">x</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label>Add Material Finishes</label>
+          <table class="table">
+            <tr>
+              <th>#</th>
+              <th>Possible Material Finishes</th>
+              <th> V </th>
+            </tr>
+            <tr *ngFor="let materialfinish of possibleMaterialFinishes; let i = index">
+              <td>{{i+1}}</td>
+              <td>{{materialfinish.material.name}} {{materialfinish.name}}</td>
+              <td>
+                <div class="col-xs-1">
+                  <button type="button" class="btn btn-success" (click)="onAddPossibleMaterialFinish(i)">v</button>
+                </div>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
       <div class="row">
         <div class="col-sm-5 form-group">
           <label>Associated Products</label>
@@ -90,6 +135,14 @@
           </table>
         </div>
       </div>
+
+
+
+
+
+
+
+
       <div class="row">
         <div class="col-xs-12">
           <button type="button" class="btn btn-success" (click)="onSubmit2()">Save</button>
