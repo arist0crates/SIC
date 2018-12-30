@@ -19,7 +19,9 @@ export class ProductEditComponent implements OnInit {
   productForm: FormGroup;
   product: Product;
   lcategory: Category[];
-  lmaterialfinish: MaterialFinish[];
+  selectedCategory : Category;
+  lmaterialFinishes: Array<MaterialFinish> = [];
+  possibleMaterialFinishes: MaterialFinish[];
   lproducts: Product[];
   lsubProducts: Array<Product> = [];
   newProduct: Product;
@@ -56,29 +58,6 @@ export class ProductEditComponent implements OnInit {
     this.onCancel();
   }
 
-  /*
-    onSubmit2(productForm: FormGroup) {
-  
-      this.productForm.value['name'],
-  
-        const newCategory = new Category(
-        this.productForm.value['categoryChild']
-        this.productForm.value['categoryFather']),
-  
-      const newDimension = new Dimension(
-        this.productForm.value['productDimensionminHeight']
-        this.productForm.value['productDimensionmaxHeight'],
-        this.productForm.value['productDimensionminWidth'],
-        this.productForm.value['productDimensionmaxWidth'],
-        this.productForm.value['productDimensionminDepth'],
-        this.productForm.value['productDimensionmaxDepth']);
-  
-      this.productForm.value['materialFinish'],
-        this.lsubProducts;
-  
-      this.onCancel();
-  
-    }*/
   onSubmit2(productForm: FormGroup) {
 
     const newDimension = new DimensionDTO(
@@ -90,21 +69,19 @@ export class ProductEditComponent implements OnInit {
       this.productForm.value['productDimensionmaxDepth']
     );
 
-    
+
     const newProductDTO = new ProductDTO(
       this.productForm.value['name'],
-      this.lmaterialfinish,
-      //this.productForm.value['materialFinish'],
-      this.lsubProducts,
+      this.possibleMaterialFinishes,
+      this.lproducts,
       newDimension,
-      this.lcategory[1]);
-      // this.productForm.value['categoryFather']);
+      this.selectedCategory);
+     // this.productForm.value['categoryFather']);
 
 
-    console.log("-----------------------------------");
+    console.log("------------------------------");
     console.log(this.productForm.value['name']);
 
-    console.log(this.productForm.value['categoryChild']);
     console.log(this.productForm.value['categoryFather']);
 
     console.log(this.productForm.value['productDimensionminHeight']);
@@ -116,7 +93,7 @@ export class ProductEditComponent implements OnInit {
     console.log(this.productForm.value['productDimensionminDepth']);
     console.log(this.productForm.value['productDimensionmaxDepth']);
 
-    console.log(this.productForm.value['materialFinish']);
+    console.log(this.lmaterialFinishes);
 
     console.log(this.lsubProducts);
 
@@ -143,9 +120,8 @@ export class ProductEditComponent implements OnInit {
     this.productForm = new FormGroup({
       //  'productId': new FormControl(productId, Validators.required),
       'name': new FormControl(productName, Validators.required),
-      'categoryChild': new FormControl(categoryChild, Validators.required),
       'categoryFather': new FormControl(categoryFather, Validators.required),
-      //'productPossibleMaterialFinishes': new FormControl(productPossibleMaterialFinishes, Validators.required),
+     
       'productDimensionminHeight': new FormControl(productDimensionminHeight, Validators.required),
       'productDimensionmaxHeight': new FormControl(productDimensionmaxHeight, Validators.required),
       'productDimensionminDepth': new FormControl(productDimensionminDepth, Validators.required),
@@ -176,9 +152,9 @@ export class ProductEditComponent implements OnInit {
 
   getMaterialFinish() {
     this.productService.getMaterialFinish()
-      .then((lmaterialfinish) => {
-        this.lmaterialfinish = lmaterialfinish;
-        console.log(this.lmaterialfinish);
+      .then((possibleMaterialFinishes) => {
+        this.possibleMaterialFinishes = possibleMaterialFinishes;
+        console.log(this.possibleMaterialFinishes);
       });
   }
 
@@ -188,6 +164,19 @@ export class ProductEditComponent implements OnInit {
 
   onAddSubProduct(index: number) {
     this.lsubProducts.push(this.lproducts[index]);
+  }
+
+  onDeletePossibleMaterialFinish(index: number) {
+    this.lmaterialFinishes.splice(index, 1);
+  }
+
+  onAddPossibleMaterialFinish(index: number) {
+    this.lmaterialFinishes.push(this.possibleMaterialFinishes[index]);
+  }
+
+  onSelectCategory(index: number) {
+    this.selectedCategory = this.lcategory[index];
+    console.log(this.selectedCategory.name);
   }
 
   onCancel() {

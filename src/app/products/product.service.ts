@@ -74,7 +74,9 @@ export class ProductService {
     };
     return this
       .http
-      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+     //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
+     .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
+      //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
       {
         headers: headers
       }).subscribe(data => {
