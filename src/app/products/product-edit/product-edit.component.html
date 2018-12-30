@@ -41,8 +41,8 @@
       <div>
         <label for="material-finish">Material-Finish</label>
         <br>
-        <select #state_id id2="state_id2">
-          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish">
+        <select #state_id id2="state_id2" formControlName="materialFinish" class="form-control">
+          <option [value]="materialfinish" *ngFor="let materialfinish of lmaterialfinish" ng-selected="category">
             {{materialfinish.material.name}} - {{materialfinish.name}}</option>
         </select>
         <br>
