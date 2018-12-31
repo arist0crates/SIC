@@ -42,7 +42,6 @@ export class ProductDetailComponent implements OnInit {
               console.log(this.product);
             });
         })
-
   }
 
   onAddToShoppingList() {
@@ -52,6 +51,11 @@ export class ProductDetailComponent implements OnInit {
   onEditProduct() {
     this.router.navigate(['edit'], {relativeTo: this.route});
     this.router.navigate(['../', this.id, 'edit'], {relativeTo: this.route});
+  }
+
+  onEditProductPrice(){
+    this.router.navigate(['price'], {relativeTo: this.route});
+
   }
 
   onDeleteProduct() {

@@ -14,6 +14,7 @@ import { OrderComponent } from './orders/order/order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
 import { AssignOrdersFactoriesComponent } from './assign-orders-factories/assign-orders-factories.component';
+import { ProductPriceComponent } from './products/product-price/product-price.component';
 
 @NgModule({
   declarations: [

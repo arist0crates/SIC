@@ -48,6 +48,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.router.navigate(['new'], { relativeTo: this.route });
   }
 
+  onNewCollection() {
+    this.router.navigate(['newCollection'], { relativeTo: this.route });
+  }
+
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

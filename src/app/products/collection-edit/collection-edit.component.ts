@@ -10,18 +10,16 @@ import { Category } from 'src/app/categories/category.model';
 import { Dimension } from 'src/app/dimensions/dimension.model';
 import { DimensionDTO } from 'src/app/dimensions/dimension.model';
 @Component({
-  selector: 'app-product-edit',
-  templateUrl: './product-edit.component.html',
-  styleUrls: ['./product-edit.component.css']
+  selector: 'app-collection-edit',
+  templateUrl: './collection-edit.component.html',
+  styleUrls: ['./collection-edit.component.css']
 })
-export class ProductEditComponent implements OnInit {
+export class CollectionEditComponent implements OnInit {
   id: number;
   productForm: FormGroup;
   product: Product;
   lcategory: Category[];
-  selectedCategory : Category;
-  lmaterialFinishes: Array<MaterialFinish> = [];
-  possibleMaterialFinishes: MaterialFinish[];
+  lmaterialfinish: MaterialFinish[];
   lproducts: Product[];
   lsubProducts: Array<Product> = [];
   newProduct: Product;
@@ -58,6 +56,29 @@ export class ProductEditComponent implements OnInit {
     this.onCancel();
   }
 
+  /*
+    onSubmit2(productForm: FormGroup) {
+  
+      this.productForm.value['name'],
+  
+        const newCategory = new Category(
+        this.productForm.value['categoryChild']
+        this.productForm.value['categoryFather']),
+  
+      const newDimension = new Dimension(
+        this.productForm.value['productDimensionminHeight']
+        this.productForm.value['productDimensionmaxHeight'],
+        this.productForm.value['productDimensionminWidth'],
+        this.productForm.value['productDimensionmaxWidth'],
+        this.productForm.value['productDimensionminDepth'],
+        this.productForm.value['productDimensionmaxDepth']);
+  
+      this.productForm.value['materialFinish'],
+        this.lsubProducts;
+  
+      this.onCancel();
+  
+    }*/
   onSubmit2(productForm: FormGroup) {
 
     const newDimension = new DimensionDTO(
@@ -69,19 +90,21 @@ export class ProductEditComponent implements OnInit {
       this.productForm.value['productDimensionmaxDepth']
     );
 
-
+    
     const newProductDTO = new ProductDTO(
       this.productForm.value['name'],
-      this.possibleMaterialFinishes,
-      this.lproducts,
+      this.lmaterialfinish,
+      //this.productForm.value['materialFinish'],
+      this.lsubProducts,
       newDimension,
-      this.selectedCategory);
-     // this.productForm.value['categoryFather']);
+      this.lcategory[1]);
+      // this.productForm.value['categoryFather']);
 
 
-    console.log("------------------------------");
+    console.log("-----------------------------------");
     console.log(this.productForm.value['name']);
 
+    console.log(this.productForm.value['categoryChild']);
     console.log(this.productForm.value['categoryFather']);
 
     console.log(this.productForm.value['productDimensionminHeight']);
@@ -93,7 +116,7 @@ export class ProductEditComponent implements OnInit {
     console.log(this.productForm.value['productDimensionminDepth']);
     console.log(this.productForm.value['productDimensionmaxDepth']);
 
-    console.log(this.lmaterialFinishes);
+    console.log(this.productForm.value['materialFinish']);
 
     console.log(this.lsubProducts);
 
@@ -120,8 +143,9 @@ export class ProductEditComponent implements OnInit {
     this.productForm = new FormGroup({
       //  'productId': new FormControl(productId, Validators.required),
       'name': new FormControl(productName, Validators.required),
+      'categoryChild': new FormControl(categoryChild, Validators.required),
       'categoryFather': new FormControl(categoryFather, Validators.required),
-     
+      //'productPossibleMaterialFinishes': new FormControl(productPossibleMaterialFinishes, Validators.required),
       'productDimensionminHeight': new FormControl(productDimensionminHeight, Validators.required),
       'productDimensionmaxHeight': new FormControl(productDimensionmaxHeight, Validators.required),
       'productDimensionminDepth': new FormControl(productDimensionminDepth, Validators.required),
@@ -152,9 +176,9 @@ export class ProductEditComponent implements OnInit {
 
   getMaterialFinish() {
     this.productService.getMaterialFinish()
-      .then((possibleMaterialFinishes) => {
-        this.possibleMaterialFinishes = possibleMaterialFinishes;
-        console.log(this.possibleMaterialFinishes);
+      .then((lmaterialfinish) => {
+        this.lmaterialfinish = lmaterialfinish;
+        console.log(this.lmaterialfinish);
       });
   }
 
@@ -164,19 +188,6 @@ export class ProductEditComponent implements OnInit {
 
   onAddSubProduct(index: number) {
     this.lsubProducts.push(this.lproducts[index]);
-  }
-
-  onDeletePossibleMaterialFinish(index: number) {
-    this.lmaterialFinishes.splice(index, 1);
-  }
-
-  onAddPossibleMaterialFinish(index: number) {
-    this.lmaterialFinishes.push(this.possibleMaterialFinishes[index]);
-  }
-
-  onSelectCategory(index: number) {
-    this.selectedCategory = this.lcategory[index];
-    console.log(this.selectedCategory.name);
   }
 
   onCancel() {
