@@ -11,19 +11,21 @@ import { AuthService } from '../auth.service';
 export class SignupComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
-
+  checked: boolean;
   ngOnInit() {
+    this.checked = false;
   }
 
   onSignup(form: NgForm) {
-    const email = form.value.email;
-    const password = form.value.password;
-    const name = form.value.name;
-    this.authService.signupUser(email, password,name);
+    if (this.checked = true) {
+      const email = form.value.email;
+      const password = form.value.password;
+      const name = form.value.name;
+      this.authService.signupUser(email, password, name);
+    } else { console.log("erro") }
 
- 
-    
-    
+
+
   }
 
 }
