@@ -21,17 +21,7 @@ export class CalcCircuitComponent implements OnInit {
    }
 
   ngOnInit() {
-    //this.calcCircuit();
     this.calcCircuitService.calcCircuit().subscribe(output => this.output = output);
     console.log(this.output);
-  }
-
-  calcCircuit(): void {
-    /*if(this.authService.isAuthenticated() == true){
-      this.calcCircuitService.calcCircuit().subscribe(output => this.output = output);
-    }else{
-      console.log("Utilizador não logado!!");
-    }*/
-    this.calcCircuitService.calcCircuit().subscribe(output => this.output = output);
   }
 }
