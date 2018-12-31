@@ -72,7 +72,7 @@ export class ProductEditComponent implements OnInit {
 
     const newProductDTO = new ProductDTO(
       this.productForm.value['name'],
-      this.possibleMaterialFinishes,
+      this.lmaterialFinishes,
       this.lproducts,
       newDimension,
       this.selectedCategory);
@@ -173,7 +173,9 @@ export class ProductEditComponent implements OnInit {
   }
 
   onAddPossibleMaterialFinish(index: number) {
-    this.lmaterialFinishes.push(this.possibleMaterialFinishes[index]);
+    var materialFinishN = this.possibleMaterialFinishes[index];
+    materialFinishN.MaterialFinishId = 0; 
+    this.lmaterialFinishes.push(materialFinishN);
   }
 
   onSelectCategory(index: number) {
