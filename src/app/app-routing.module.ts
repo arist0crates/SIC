@@ -9,7 +9,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { OrderComponent } from './orders/order/order.component';
 import { AuthGuard } from './auth/auth-guard.service';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+<<<<<<< HEAD
 import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
+=======
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+>>>>>>> logger and a bit of privacy policy
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
@@ -18,7 +22,11 @@ const appRoutes: Routes = [
   { path: 'engine', component: EngineComponent },
   { path: 'order', component: OrderComponent },
   { path: 'order-history', component: OrderHistoryComponent },
+<<<<<<< HEAD
   { path: 'calc-circuit', component: CalcCircuitComponent }
+=======
+  {path: 'signup/privacy' , component: PrivacyPolicyComponent}
+>>>>>>> logger and a bit of privacy policy
 ];
 
 @NgModule({

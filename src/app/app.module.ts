@@ -12,8 +12,12 @@ import { CoreModule } from './core/core.module';
 import { EngineComponent } from './engine/engine.component';
 import { OrderComponent } from './orders/order/order.component';
 import { OrderHistoryComponent } from './order-history/order-history.component';
+<<<<<<< HEAD
 import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
 import { ProductPriceComponent } from './products/product-price/product-price.component';
+=======
+import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+>>>>>>> logger and a bit of privacy policy
 
 @NgModule({
   declarations: [
@@ -21,7 +25,11 @@ import { ProductPriceComponent } from './products/product-price/product-price.co
     EngineComponent,
     OrderComponent,
     OrderHistoryComponent,
+<<<<<<< HEAD
     CalcCircuitComponent
+=======
+    PrivacyPolicyComponent,
+>>>>>>> logger and a bit of privacy policy
   ],
   imports: [
     BrowserModule,
