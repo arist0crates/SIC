@@ -1,17 +1,21 @@
 <div>
-  <label>
-    Product Price
-  </label>
-  <input type="text" id="ProductPrice" formControlName="productPrice" class="form-control">  
-</div>
-<div>
-  <br>
-  <label>
-    Product Price Date
-  </label>
-  <input type="date" id="dt_init" formControlName="productPriceDate" class="form-control">
-</div>
-<div>
-  <br>
-  <button type="button" class="btn"> Ok </button>
+  <form [formGroup]="productForm" (ngSubmit)="create()">
+    <div>
+      <label>
+        Product Price
+      </label>
+      <input type="text" id="ProductPrice" formControlName="productPrice" class="form-control">  
+    </div>
+    <div>
+      <br>
+      <label>
+        Product Price Date
+      </label>
+    <input type="date" id="dt_init" formControlName="productPriceDate" class="form-control">
+    </div>
+    <div>
+    <br>
+      <button type="button" class="btn" (click)="create()"> Ok </button>
+    </div>
+  </form>
 </div>

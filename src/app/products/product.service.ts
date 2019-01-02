@@ -7,6 +7,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
+import { ProductPrice } from '../prices/productprice.model';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -120,6 +121,25 @@ export class ProductService {
       .then(data => { return data; });
   }
 
+  postProductPrice(newProductPrice : ProductPrice) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      })
+    };
+    return this
+      .http
+      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProductPrice),
+      {
+        headers: headers
+      }).subscribe(data => {
+        console.log(data);
+      });
+  }
   
 
 }
