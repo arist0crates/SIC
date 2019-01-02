@@ -7,8 +7,12 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
+<<<<<<< HEAD
 import { ProductPrice } from '../prices/productprice.model';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
+=======
+//const headers = new HttpHeaders().set('Content-Type', 'application/json');
+>>>>>>> b56eb7fe03439c9a6fc3c8b78b0f69938fd12a68
 
 
 @Injectable()
@@ -68,7 +72,6 @@ export class ProductService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
@@ -78,9 +81,9 @@ export class ProductService {
      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
      .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
       //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
-      {
-        headers: headers
-      }).subscribe(data => {
+      httpOptions
+        
+      ).subscribe(data => {
         console.log(data);
       });
   }
