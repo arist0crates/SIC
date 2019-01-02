@@ -7,12 +7,9 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
-<<<<<<< HEAD
 import { ProductPrice } from '../prices/productprice.model';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
-=======
-//const headers = new HttpHeaders().set('Content-Type', 'application/json');
->>>>>>> b56eb7fe03439c9a6fc3c8b78b0f69938fd12a68
+
 
 
 @Injectable()
