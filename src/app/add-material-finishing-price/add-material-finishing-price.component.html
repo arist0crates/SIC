@@ -1,0 +1,26 @@
+<div class="row" *ngFor="let materialFinishing2 of materialFinishings; let i = index">
+  <div class="col-xs-12">
+    <a style="cursor: pointer;" routerLinkActive="active" class="list-group-item clearfix" (click)="select(i+1)">
+      <div class="pull-left">
+        <h4 class="list-group-item-heading">{{ materialFinishing2.name }}</h4>
+      </div>
+    </a>
+  </div>
+</div>
+<div>
+  <label>
+    Material and Finish combined price
+  </label>
+  <input type="text" id="ProductPrice" class="form-control">
+</div>
+<div>
+  <br>
+  <label>
+    Material and Finish combined date
+  </label>
+  <input type="date" id="dt_init" class="form-control">
+</div>
+<div>
+  <br>
+  <button type="button" class="btn"  (click)="addPrice()"> Ok </button>
+</div>

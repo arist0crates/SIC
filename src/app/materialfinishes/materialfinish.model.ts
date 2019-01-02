@@ -5,7 +5,7 @@ export class MaterialFinish {
     public name: string;
     public material: Material;
   
-    constructor(MaterialFinishId: number, name: string, material: Material) {
+    constructor( MaterialFinishId: number,name:string , material: Material) {
       this.MaterialFinishId = MaterialFinishId;
       this.name = name;
       this.material = material;

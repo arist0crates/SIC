@@ -7,6 +7,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
+import { MaterialFinishPrice } from '../prices/materialfinishprice.model';
 //const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -16,7 +17,7 @@ export class ProductService {
 
   private products: Product[] = [];
 
-  constructor(private slService: ShoppingListService, public http: HttpClient, private authService: AuthService) {}
+  constructor(private slService: ShoppingListService, public http: HttpClient, private authService: AuthService) { }
 
   setProducts(products: Product[]) {
     this.products = products;
@@ -27,42 +28,60 @@ export class ProductService {
     let token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': 'Bearer '+ token,
+        'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
     };
-    console.log(token.toString());
+   
     return this
       .http
       .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
       .toPromise()
       .then(res => <Product[]>res)
-      .then(data => {return data; });
+      .then(data => { return data; });
   }
 
   getProduct(index: number) {
     let token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type':  'application/json',
+        'Content-Type': 'application/json',
         'Access-Control-Allow-Origin': '*',
-        'Authorization': 'Bearer '+ token,
+        'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
     };
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product/'+ index, httpOptions)
+      .get('https://sicgc.azurewebsites.net/api/Product/' + index, httpOptions)
       .toPromise()
       .then(res => <Product>res)
-      .then(data => {return data; });
+      .then(data => { return data; });
+  }
+  getMaterialFinishById(index: number) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      })
+    };
+    return this
+      .http
+      .get('https://sicgc.azurewebsites.net/api/MaterialFinish/' + index, httpOptions)
+      .toPromise()
+      .then(res => <MaterialFinish>res)
+      .then(data => { return data; });
   }
 
 
 
-  postProduct(newProduct : ProductDTO) {
+
+  postProduct(newProduct: ProductDTO) {
     let token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
@@ -73,11 +92,11 @@ export class ProductService {
     };
     return this
       .http
-     //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
-     .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
-      //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
-      httpOptions
-        
+      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
+      .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
+        //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+        httpOptions
+
       ).subscribe(data => {
         console.log(data);
       });
@@ -101,7 +120,7 @@ export class ProductService {
     this.products.splice(index, 1);
     this.productsChanged.next(this.products.slice());
   }
-  getCategory(){
+  getCategory() {
     return this
       .http
       .get('https://sicgc.azurewebsites.net/api/Category')
@@ -118,7 +137,26 @@ export class ProductService {
       .then(res => <MaterialFinish[]>res)
       .then(data => { return data; });
   }
+  postMaterialFinishPrice(price: MaterialFinishPrice) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      })
+    };
+    return this
+      .http
+      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
+      .post('https://sicgc.azurewebsites.net/api/MaterialFinishPrice', JSON.stringify(price),
+        httpOptions
 
-  
+      ).subscribe(data => {
+        console.log(data);
+      });
+  }
+
+
 
 }

@@ -16,6 +16,7 @@ import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
 import { AssignOrdersFactoriesComponent } from './assign-orders-factories/assign-orders-factories.component';
 import { ProductPriceComponent } from './products/product-price/product-price.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
+import { AddMaterialFinishingPriceComponent } from './add-material-finishing-price/add-material-finishing-price.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
     OrderHistoryComponent,
     CalcCircuitComponent,
     AssignOrdersFactoriesComponent,
-    PrivacyPolicyComponent
+    PrivacyPolicyComponent,
+    AddMaterialFinishingPriceComponent
   ],
   imports: [
     BrowserModule,
