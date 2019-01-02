@@ -67,7 +67,6 @@ export class ProductService {
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
@@ -77,9 +76,9 @@ export class ProductService {
      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
      .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
       //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
-      {
-        headers: headers
-      }).subscribe(data => {
+      httpOptions
+        
+      ).subscribe(data => {
         console.log(data);
       });
   }
