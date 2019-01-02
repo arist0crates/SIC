@@ -9,6 +9,7 @@ import { MaterialFinish } from 'src/app/materialfinishes/materialfinish.model';
 import { Category } from 'src/app/categories/category.model';
 import { Dimension } from 'src/app/dimensions/dimension.model';
 import { DimensionDTO } from 'src/app/dimensions/dimension.model';
+import { ProductRelation } from '../product-relation.model';
 @Component({
   selector: 'app-product-edit',
   templateUrl: './product-edit.component.html',
@@ -17,14 +18,14 @@ import { DimensionDTO } from 'src/app/dimensions/dimension.model';
 export class ProductEditComponent implements OnInit {
   id: number;
   productForm: FormGroup;
-  product: Product;
+
   lcategory: Category[];
   selectedCategory: Category;
   lmaterialFinishes: Array<MaterialFinish> = [];
   possibleMaterialFinishes: MaterialFinish[];
   lproducts: Product[];
-  lsubProducts: Array<Product> = [];
-  newProduct: Product;
+  lsubProducts: Product[] = [];
+  newProduct: ProductDTO;
 
 
   constructor(private route: ActivatedRoute,
@@ -60,44 +61,66 @@ export class ProductEditComponent implements OnInit {
 
   onSubmit2(productForm: FormGroup) {
 
-    const newDimension = new DimensionDTO(
-      this.productForm.value['productDimensionminHeight'],
+    const dimensions = new DimensionDTO(this.productForm.value['productDimensionminHeight'],
       this.productForm.value['productDimensionmaxHeight'],
-      this.productForm.value['productDimensionminWidth'],
-      this.productForm.value['productDimensionmaxWidth'],
       this.productForm.value['productDimensionminDepth'],
-      this.productForm.value['productDimensionmaxDepth']
-    );
+      this.productForm.value['productDimensionmaxDepth'],
+      this.productForm.value['productDimensionminWidth'],
+      this.productForm.value['productDimensionmaxWidth']);
 
+    var productRelationsaux: ProductRelation[] = [];
 
-    const newProductDTO = new ProductDTO(
+    for (let subproduct of this.lsubProducts) {
+      var subproductrelation = new ProductRelation(subproduct.productId);
+      productRelationsaux.push(subproductrelation);
+    }
+
+    this.newProduct = new ProductDTO(
       this.productForm.value['name'],
       this.lmaterialFinishes,
-      this.lproducts,
-      newDimension,
-      this.selectedCategory);
+      productRelationsaux,
+      dimensions,
+      this.selectedCategory
+    );
+
+    // const newDimension = new DimensionDTO(
+    //   this.productForm.value['productDimensionminHeight'],
+    //   this.productForm.value['productDimensionmaxHeight'],
+    //   this.productForm.value['productDimensionminWidth'],
+    //   this.productForm.value['productDimensionmaxWidth'],
+    //   this.productForm.value['productDimensionminDepth'],
+    //   this.productForm.value['productDimensionmaxDepth']
+    // );
+
+
+    // const newProductDTO = new ProductDTO(
+    //   this.productForm.value['name'],
+    //   this.lmaterialFinishes,
+    //   this.lsubProducts,
+    //   newDimension,
+    //   this.selectedCategory);
     // this.productForm.value['categoryFather']);
 
 
-    console.log("------------------------------");
-    console.log(this.productForm.value['name']);
+    // console.log("------------------------------");
+    // console.log(this.productForm.value['name']);
 
-    console.log(this.productForm.value['categoryFather']);
+    // console.log(this.productForm.value['categoryFather']);
 
-    console.log(this.productForm.value['productDimensionminHeight']);
-    console.log(this.productForm.value['productDimensionmaxHeight']);
+    // console.log(this.productForm.value['productDimensionminHeight']);
+    // console.log(this.productForm.value['productDimensionmaxHeight']);
 
-    console.log(this.productForm.value['productDimensionminWidth']);
-    console.log(this.productForm.value['productDimensionmaxWidth']);
+    // console.log(this.productForm.value['productDimensionminWidth']);
+    // console.log(this.productForm.value['productDimensionmaxWidth']);
 
-    console.log(this.productForm.value['productDimensionminDepth']);
-    console.log(this.productForm.value['productDimensionmaxDepth']);
+    // console.log(this.productForm.value['productDimensionminDepth']);
+    // console.log(this.productForm.value['productDimensionmaxDepth']);
 
-    console.log(this.lmaterialFinishes);
+    // console.log(this.lmaterialFinishes);
 
-    console.log(this.lsubProducts);
+    // console.log(this.lsubProducts);
 
-    this.productService.postProduct(newProductDTO);
+    this.productService.postProduct(this.newProduct);
     this.onCancel();
 
   }
@@ -164,7 +187,7 @@ export class ProductEditComponent implements OnInit {
 
   onAddSubProduct(index: number) {
     var subProduct = this.lproducts[index];
-    subProduct.productId = 0;
+    //subProduct.productId = 0;
     this.lsubProducts.push(subProduct);
   }
 
@@ -174,16 +197,16 @@ export class ProductEditComponent implements OnInit {
 
   onAddPossibleMaterialFinish(index: number) {
     var materialFinishN = this.possibleMaterialFinishes[index];
-    materialFinishN.MaterialFinishId = 0; 
+    //materialFinishN.MaterialFinishId = 0; 
     this.lmaterialFinishes.push(materialFinishN);
   }
 
   onSelectCategory(index: number) {
     this.selectedCategory = this.lcategory[index];
-    this.selectedCategory.CategoryId = 0;
-    console.log(this.selectedCategory.name);
-    console.log(this.selectedCategory.CategoryId);
-    console.log(this.selectedCategory.father);
+    //this.selectedCategory.CategoryId = 0;
+    // console.log(this.selectedCategory.name);
+    // console.log(this.selectedCategory.CategoryId);
+    // console.log(this.selectedCategory.father);
 
   }
 

@@ -8,6 +8,7 @@ import { Category } from '../categories/category.model';
 import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
 import { ProductPrice } from '../prices/productprice.model';
+import { ProductRelation } from './product-relation.model';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -73,11 +74,12 @@ export class ProductService {
         'Accept': 'application/json'
       })
     };
+    
     return this
       .http
      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
-     .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
-      //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+     //.post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
+      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
       httpOptions
         
       ).subscribe(data => {

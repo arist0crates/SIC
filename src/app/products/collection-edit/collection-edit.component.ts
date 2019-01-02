@@ -91,13 +91,13 @@ export class CollectionEditComponent implements OnInit {
     );
 
     
-    const newProductDTO = new ProductDTO(
-      this.productForm.value['name'],
-      this.lmaterialfinish,
-      //this.productForm.value['materialFinish'],
-      this.lsubProducts,
-      newDimension,
-      this.lcategory[1]);
+    // const newProductDTO = new ProductDTO(
+    //   this.productForm.value['name'],
+    //   this.lmaterialfinish,
+    //   //this.productForm.value['materialFinish'],
+    //   this.lsubProducts,
+    //   newDimension,
+    //   this.lcategory[1]);
       // this.productForm.value['categoryFather']);
 
 
@@ -120,7 +120,7 @@ export class CollectionEditComponent implements OnInit {
 
     console.log(this.lsubProducts);
 
-    this.productService.postProduct(newProductDTO);
+    //this.productService.postProduct(newProductDTO);
     this.onCancel();
 
   }
