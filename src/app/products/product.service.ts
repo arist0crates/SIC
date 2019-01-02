@@ -9,6 +9,10 @@ import { AuthService } from '../auth/auth.service';
 import { MaterialFinish } from '../materialfinishes/materialfinish.model';
 import { MaterialFinishPrice } from '../prices/materialfinishprice.model';
 //const headers = new HttpHeaders().set('Content-Type', 'application/json');
+import { ProductPrice } from '../prices/productprice.model';
+import { ProductRelation } from './product-relation.model';
+const headers = new HttpHeaders().set('Content-Type', 'application/json');
+
 
 
 @Injectable()
@@ -90,13 +94,14 @@ export class ProductService {
         'Accept': 'application/json'
       })
     };
+    
     return this
       .http
-      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
-      .post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
-        //.post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
-        httpOptions
-
+     //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
+     //.post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
+      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+      httpOptions
+        
       ).subscribe(data => {
         console.log(data);
       });
@@ -158,5 +163,25 @@ export class ProductService {
   }
 
 
+  postProductPrice(newProductPrice : ProductPrice) {
+    let token = this.authService.getToken();
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
+        'Authorization': 'Bearer ' + token,
+        'Accept': 'application/json'
+      })
+    };
+    return this
+      .http
+      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProductPrice),
+      {
+        headers: headers
+      }).subscribe(data => {
+        console.log(data);
+      });
+  }
+  
 
 }
