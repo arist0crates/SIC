@@ -6,6 +6,7 @@ export class Order {
     public state: string = 'SUBMITTED';
     public datePlaced: Date;
     public deliveryAddress: DeliveryAddress;
+    public customer: string;
 
     constructor() { 
     }
