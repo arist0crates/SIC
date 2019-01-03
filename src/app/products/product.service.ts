@@ -182,6 +182,15 @@ export class ProductService {
         console.log(data);
       });
   }
+
+  getProductPrice(productId : number) {
+    return this
+      .http
+      .get('https://sicgc.azurewebsites.net/api/ProductPrice/Product/' + productId)
+      .toPromise()
+      .then(res => <ProductPrice>res)
+      .then(data => { return data; });
+  }
   
 
 }

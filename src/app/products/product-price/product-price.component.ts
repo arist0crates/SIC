@@ -36,8 +36,13 @@ export class ProductPriceComponent implements OnInit {
   }
 
   create(){
-    this.productPrice = new ProductPrice(0,this.productForm.value['productPrice'],this.product,this.productForm.value['productPriceDate']);
-    this.productService.postProductPrice(this.productPrice);
+    if(this.productForm.value['productPrice'] != null && this.productForm.value['productPriceDate'] != null){
+      this.productPrice = new ProductPrice(0,this.productForm.value['productPrice'],this.product,this.productForm.value['productPriceDate']);
+      this.productService.postProductPrice(this.productPrice);
+      console.log("CREATE");
+    }else{
+      console.log("NOT CREATE");
+    }
   }
 
   private initForm(){
