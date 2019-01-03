@@ -10,7 +10,7 @@ import { AuthService } from '../../auth/auth.service';
 })
 export class HeaderComponent {
   constructor(/*private dataStorageService: DataStorageService,*/
-              private authService: AuthService) {
+    private authService: AuthService) {
   }
 
   /*onSaveData() {
@@ -32,5 +32,9 @@ export class HeaderComponent {
 
   isAuthenticated() {
     return this.authService.isAuthenticated();
+  }
+
+  onDeleteData() {
+    this.authService.deleteUser();
   }
 }

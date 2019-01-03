@@ -99,4 +99,13 @@ export class AuthService {
 
     });
   }
+  deleteUser(){
+    firebase.auth().currentUser.delete();
+      // User deleted.
+   var ref = firebase.database().ref(
+    "users/".concat(firebase.auth().currentUser.uid, "/")
+ );
+ ref.remove();
+    this.logout();
+  }
 }

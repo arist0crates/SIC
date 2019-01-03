@@ -12,6 +12,8 @@
         <li routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
         <li routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
         <li routerLinkActive="active"><a routerLink="/order">Order</a></li>
+        <li routerLinkActive="active"><a routerLink="/catalog">Catalog</a></li>
+        <li routerLinkActive="active"><a routerLink="/collection">Collection</a></li>
         <li routerLinkActive="active"><a routerLink="/materialFinish">Materials And Finishes</a></li>
         <li *ngIf="isAuthenticated()" routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
       </ul>
@@ -31,6 +33,7 @@
           <ul class="dropdown-menu">
             <li><a style="cursor: pointer;" (click)="onSaveData()">Save Data</a></li>
             <li><a style="cursor: pointer;" (click)="onFetchData()">Fetch Data</a></li>
+            <li><a style="cursor: pointer;" (click)="onDeleteData()">Delete User</a></li>
           </ul>
         </li>
       </ul>
