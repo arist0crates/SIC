@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { CollectionService } from '../collection.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 import { Product } from 'src/app/products/product.model';
-import { Collection } from '../collection.model';
+import { Collection, CollectionDTO } from '../collection.model';
+import { ProductRelation } from 'src/app/products/product-relation.model';
 
 @Component({
   selector: 'app-collection',
@@ -13,7 +14,7 @@ import { Collection } from '../collection.model';
 export class CollectionComponent implements OnInit {
   lproducts: Product[];
   laddedProducts: Product[] = [];
-  newCollection: Collection;
+  newCollection: CollectionDTO;
   //collectionName: string;
 
   constructor(private route: ActivatedRoute,
@@ -56,9 +57,16 @@ export class CollectionComponent implements OnInit {
    console.log(collectionName);
    console.log(this.laddedProducts);
 
-   this.newCollection = new Collection(
+   var productRelationsaux: ProductRelation[] = [];
+
+   for (let subproduct of this.laddedProducts) {
+     var subproductrelation = new ProductRelation(subproduct.productId);
+     productRelationsaux.push(subproductrelation);
+   }
+
+   this.newCollection = new CollectionDTO(
      collectionName,
-     this.laddedProducts
+     productRelationsaux
    );
     this.collectionService.postCollection(this.newCollection);
   }

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Product } from '../products/product.model';
-import { Collection } from './collection.model';
+import { Collection, CollectionDTO } from './collection.model';
 
 @Injectable({
   providedIn: 'root'
@@ -55,11 +55,12 @@ export class CollectionService {
       .then(data => { return data; });
   }
 
-  postCollection(newCollection: Collection) {
+  postCollection(newCollection: CollectionDTO) {
     let token = this.authService.getToken();
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
+        'Access-Control-Allow-Origin': '*',
         'Authorization': 'Bearer ' + token,
         'Accept': 'application/json'
       })
@@ -67,8 +68,8 @@ export class CollectionService {
 
     return this
       .http
-      .post('https://localhost:5001/api/Collection', JSON.stringify(newCollection),
-        //.post('https://sicgc.azurewebsites.net/api/Collection', JSON.stringify(newCollection),
+      //.post('https://localhost:5001/api/Collection', JSON.stringify(newCollection),
+      .post('https://sicgc.azurewebsites.net/api/Collection', JSON.stringify(newCollection),
         httpOptions
 
       ).subscribe(data => {

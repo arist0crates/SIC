@@ -1,6 +1,6 @@
 <div>
-  <label>Distance: {{output.distance}}</label>
-</div>
-<div>
-  <label>Circuit: {{output.circuit}}</label>
+  <label>Here are the proposed "Order->Factory" Assignments:</label>
+  <li *ngFor="let assignment of output.Assignments">
+    <label>Order #{{assignment.Order}} -> {{assignment.Factory}} Factory</label>
+  </li>
 </div>
