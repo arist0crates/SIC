@@ -175,7 +175,7 @@ export class ProductService {
     };
     return this
       .http
-      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProductPrice),
+      .post('https://sicgc.azurewebsites.net/api/ProductPrice',JSON.stringify(newProductPrice),
       {
         headers: headers
       }).subscribe(data => {
