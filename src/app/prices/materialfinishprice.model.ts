@@ -6,8 +6,7 @@ export class MaterialFinishPrice {
     public item: MaterialFinish;
     public applicableDate : Date;
   
-    constructor(MaterialFinishPriceId: number, value: number, item: MaterialFinish, applicableDate : Date) {
-      this.MaterialFinishPriceId = MaterialFinishPriceId;
+    constructor(value: number, item: MaterialFinish, applicableDate : Date) {
       this.value = value;
       this.item = item;
       this.applicableDate = applicableDate;

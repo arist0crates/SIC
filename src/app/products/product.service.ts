@@ -153,7 +153,7 @@ export class ProductService {
     };
     return this
       .http
-      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
+      //.post('http://localhost:5000/api/MaterialFinishPrice', JSON.stringify(price),
       .post('https://sicgc.azurewebsites.net/api/MaterialFinishPrice', JSON.stringify(price),
         httpOptions
 
@@ -175,7 +175,7 @@ export class ProductService {
     };
     return this
       .http
-      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProductPrice),
+      .post('https://sicgc.azurewebsites.net/api/ProductPrice',JSON.stringify(newProductPrice),
       {
         headers: headers
       }).subscribe(data => {

@@ -7,7 +7,8 @@ export class ProductPrice {
   public applicableDate: Date;
 
 
-  constructor(value:number,item:Product,applicableDate:Date) {
+  constructor(productPriceId:number,value:number,item:Product,applicableDate:Date) {
+    this.ProductPriceId = productPriceId;
     this.value = value;
     this.item = item;
     this.applicableDate = applicableDate;
