@@ -83,45 +83,8 @@ export class ProductEditComponent implements OnInit {
       this.selectedCategory
     );
 
-    // const newDimension = new DimensionDTO(
-    //   this.productForm.value['productDimensionminHeight'],
-    //   this.productForm.value['productDimensionmaxHeight'],
-    //   this.productForm.value['productDimensionminWidth'],
-    //   this.productForm.value['productDimensionmaxWidth'],
-    //   this.productForm.value['productDimensionminDepth'],
-    //   this.productForm.value['productDimensionmaxDepth']
-    // );
-
-
-    // const newProductDTO = new ProductDTO(
-    //   this.productForm.value['name'],
-    //   this.lmaterialFinishes,
-    //   this.lsubProducts,
-    //   newDimension,
-    //   this.selectedCategory);
-    // this.productForm.value['categoryFather']);
-
-
-    // console.log("------------------------------");
-    // console.log(this.productForm.value['name']);
-
-    // console.log(this.productForm.value['categoryFather']);
-
-    // console.log(this.productForm.value['productDimensionminHeight']);
-    // console.log(this.productForm.value['productDimensionmaxHeight']);
-
-    // console.log(this.productForm.value['productDimensionminWidth']);
-    // console.log(this.productForm.value['productDimensionmaxWidth']);
-
-    // console.log(this.productForm.value['productDimensionminDepth']);
-    // console.log(this.productForm.value['productDimensionmaxDepth']);
-
-    // console.log(this.lmaterialFinishes);
-
-    // console.log(this.lsubProducts);
-
     this.productService.postProduct(this.newProduct);
-    this.onCancel();
+    this.router.navigate(['../'], { relativeTo: this.route });
 
   }
 
