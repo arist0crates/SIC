@@ -17,6 +17,8 @@ import { AssignOrdersFactoriesComponent } from './assign-orders-factories/assign
 import { ProductPriceComponent } from './products/product-price/product-price.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { AddMaterialFinishingPriceComponent } from './add-material-finishing-price/add-material-finishing-price.component';
+import { CatalogComponent } from './catalogs/catalog/catalog.component';
+import { CollectionComponent } from './collections/collection/collection.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,9 @@ import { AddMaterialFinishingPriceComponent } from './add-material-finishing-pri
     CalcCircuitComponent,
     AssignOrdersFactoriesComponent,
     PrivacyPolicyComponent,
-    AddMaterialFinishingPriceComponent
+    AddMaterialFinishingPriceComponent,
+    CatalogComponent,
+    CollectionComponent
   ],
   imports: [
     BrowserModule,
