@@ -5,8 +5,7 @@ export class Catalog {
     public name: string;
     public products: Product[];
   
-    constructor(CatalogId: number, name: string, products: Product[]) {
-      this.CatalogId = CatalogId;
+    constructor(name: string, products: Product[]) {
       this.name = name;
       this.products = products;
         
