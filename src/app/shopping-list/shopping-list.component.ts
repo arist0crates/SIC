@@ -36,6 +36,7 @@ export class ShoppingListComponent implements OnInit, OnDestroy {
   onOrder() {
     console.log('Cheguei!!!!!!!!!');
     this.slService.onOrder(this.orderForm);
+    this.ngOnInit();
   }
 
   ngOnDestroy() {
