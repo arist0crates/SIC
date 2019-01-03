@@ -9,7 +9,6 @@ export class Collection {
   constructor(name: string, products: Product[]) {
     this.name = name;
     this.products = products;
-
   }
 }
 export class CollectionDTO {
