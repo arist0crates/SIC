@@ -73,7 +73,7 @@ export class ProductEditComponent implements OnInit {
     );
 
     this.productService.postProduct(this.newProduct);
-    this.onCancel();
+    this.router.navigate(['../'], { relativeTo: this.route });
 
   }
 

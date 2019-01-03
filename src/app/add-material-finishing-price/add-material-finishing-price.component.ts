@@ -39,7 +39,7 @@ export class AddMaterialFinishingPriceComponent implements OnInit {
     var a = parseFloat((document.getElementById("ProductPrice") as HTMLInputElement).value)
     var c = ((document.getElementById("dt_init") as HTMLInputElement).value);
     var d = new Date(c);
-    var b = new MaterialFinishPrice(this.id,a, this.materialFinishing,d);
+    var b = new MaterialFinishPrice(a, this.materialFinishing,d);
     this.productService.postMaterialFinishPrice(b);
    
   }
