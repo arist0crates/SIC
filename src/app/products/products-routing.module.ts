@@ -8,7 +8,7 @@ import { ProductStartComponent } from './product-start/product-start.component';
 import { ProductsComponent } from './products.component';
 import { ProductPriceComponent } from './product-price/product-price.component';
 import { CollectionEditComponent } from './collection-edit/collection-edit.component';
-
+import { PriceHistoryComponent } from '../prices/price-history/price-history.component';
 const productsRoutes: Routes = [
   {
     path: '', component: ProductsComponent, children: [
@@ -17,7 +17,8 @@ const productsRoutes: Routes = [
       { path: 'newCollection', component: CollectionEditComponent, canActivate: [AuthGuard] },
       { path: ':id', component: ProductDetailComponent },
       { path: ':id/edit', component: ProductEditComponent, canActivate: [AuthGuard] },
-      { path: ':id/price', component: ProductPriceComponent, canActivate: [AuthGuard] }
+      { path: ':id/price', component: ProductPriceComponent, canActivate: [AuthGuard] },
+      { path: ':id/price-history', component: PriceHistoryComponent }
     ]
   },
 ];

@@ -71,5 +71,8 @@ export class ProductDetailComponent implements OnInit {
     this.router.navigate(['/products']);
   }
 
+  onConsultPriceHistory(){
+    this.router.navigate(['price-history'], { relativeTo: this.route });
+  }
 
 }

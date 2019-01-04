@@ -10,7 +10,9 @@
         <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
         <li routerLinkActive="active"><a routerLink="/engine">Preview Your Product</a></li>
         <li routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
-        <li routerLinkActive="active"><a routerLink="/order">Order</a></li>
+        <li routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
+        <li routerLinkActive="active"><a routerLink="/catalog">Catalog</a></li>
+        <li routerLinkActive="active"><a routerLink="/collection">Collection</a></li>
         <li routerLinkActive="active"><a routerLink="/materialFinish">Materials And Finishes</a></li>
         <li *ngIf="isAuthenticated()" routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
       </ul>
@@ -20,10 +22,7 @@
           <li><a routerLink="/signin">Login</a></li>
         </ng-template>
 
-        <li><a
-          style="cursor: pointer;"
-          (click)="onLogout()"
-          *ngIf="isAuthenticated()">Logout</a></li>
+        <li><a style="cursor: pointer;" (click)="onLogout()" *ngIf="isAuthenticated()">Logout</a></li>
 
         <li class="dropdown" appDropdown *ngIf="isAuthenticated()">
           <a style="cursor: pointer;" class="dropdown-toggle" role="button">Manage <span class="caret"></span></a>

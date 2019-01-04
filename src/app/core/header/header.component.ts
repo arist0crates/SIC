@@ -9,6 +9,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
+  private role : string;
   constructor(/*private dataStorageService: DataStorageService,*/
     private authService: AuthService) {
   }
@@ -32,6 +33,10 @@ export class HeaderComponent {
 
   isAuthenticated() {
     return this.authService.isAuthenticated();
+  }
+
+  getRole(){
+    this.role = this.authService.getRole();
   }
 
   onDeleteData() {

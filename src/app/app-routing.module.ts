@@ -11,7 +11,9 @@ import { AuthGuard } from './auth/auth-guard.service';
 import { OrderHistoryComponent } from './order-history/order-history.component';
 import { AddMaterialFinishingPriceComponent } from './add-material-finishing-price/add-material-finishing-price.component';
 import { CalcCircuitComponent } from './calc-circuit/calc-circuit.component';
-
+import { AssignOrdersFactoriesComponent } from './assign-orders-factories/assign-orders-factories.component';
+import { CatalogComponent } from './catalogs/catalog/catalog.component';
+import { CollectionComponent } from './collections/collection/collection.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 
 
@@ -22,10 +24,12 @@ const appRoutes: Routes = [
   { path: 'engine', component: EngineComponent },
   { path: 'order', component: OrderComponent },
   { path: 'order-history', component: OrderHistoryComponent },
-  {path:'materialFinish', component: AddMaterialFinishingPriceComponent},
+  { path: 'materialFinish', component: AddMaterialFinishingPriceComponent },
   { path: 'calc-circuit', component: CalcCircuitComponent },
-
-  {path: 'signup/privacy' , component: PrivacyPolicyComponent}
+  { path: 'assign-orders-factories', component: AssignOrdersFactoriesComponent },
+  { path: 'signup/privacy', component: PrivacyPolicyComponent },
+  { path: 'catalog', component: CatalogComponent },
+  { path: 'collection', component: CollectionComponent }
 
 ];
 

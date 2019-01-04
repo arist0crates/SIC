@@ -1,0 +1,57 @@
+<h1>Create Catalog</h1>
+<div>
+  <br>
+  <label for="name">Catalog Name</label>
+  <br>
+  <input #collectionName type="text" name="collectionName" id="collectionName">
+  <br>
+  <br>
+</div>
+<div class="row">
+  <div class="col-sm-5 form-group">
+    <label>Associated Products</label>
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th> X </th>
+      </tr>
+      <tr *ngFor="let product of laddedProducts; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{product.name}}</td>
+        <td>
+          <div class="col-xs-1">
+            <button type="button" class="btn btn-danger" (click)="onDeleteSubProduct(i)">x</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-sm-5 form-group">
+    <label>Add Products</label>
+    <table class="table">
+      <tr>
+        <th>#</th>
+        <th>Product</th>
+        <th> V </th>
+      </tr>
+      <tr *ngFor="let product of lproducts; let i = index">
+        <td>{{i+1}}</td>
+        <td>{{product.name}}</td>
+        <td>
+          <div class="col-xs-1">
+            <button type="button" class="btn btn-success" (click)="onAddSubProduct(i)">v</button>
+          </div>
+        </td>
+      </tr>
+    </table>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-12">
+    <button type="button" class="btn btn-success" (click)="onSubmit(collectionName.value)">Save</button>
+    <button type="button" class="btn btn-danger" (click)="onCancel()">Cancel</button>
+  </div>
+</div>

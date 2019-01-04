@@ -48,7 +48,7 @@ export class ProductEditComponent implements OnInit {
   }
 
 
-  onSubmit(productForm: FormGroup) {
+  onSubmit() {
 
     const dimensions = new DimensionDTO(this.productForm.value['productDimensionminHeight'],
       this.productForm.value['productDimensionmaxHeight'],

@@ -2,7 +2,7 @@ import { Subject } from 'rxjs/Subject';
 import { Product } from '../products/product.model';
 import { Order } from '../orders/order.model';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, ɵConsole } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { NgForm } from '@angular/forms';
 import { City } from '../cities/city.model';
@@ -69,6 +69,9 @@ export class ShoppingListService {
     console.log(this.order);
     this.order.deliveryAddress = deliveryAddress;
     this.order.orderItems = [...this.getProducts()];
+    var useruid =  this.authService.getCurrentUserUid;
+    console.log('USERUID:' + useruid);
+    this.order.customer = useruid();
     console.log(this.order.orderItems);
     if (this.order.orderItems.length > 0) {
       this.http.post('https://sic-e.herokuapp.com/orders', this.order, httpOptions)

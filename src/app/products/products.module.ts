@@ -12,6 +12,7 @@ import { ProductsRoutingModule } from './products-routing.module';
 import { SharedModule } from '../shared/shared.module';
 import { ProductPriceComponent } from './product-price/product-price.component';
 import { CollectionEditComponent } from './collection-edit/collection-edit.component';
+import { PriceHistoryComponent } from '../prices/price-history/price-history.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { CollectionEditComponent } from './collection-edit/collection-edit.compo
     ProductDetailComponent,
     ProductItemComponent,
     ProductPriceComponent,
-    CollectionEditComponent
+    CollectionEditComponent,
+    PriceHistoryComponent
   ],
   imports: [
     CommonModule,
