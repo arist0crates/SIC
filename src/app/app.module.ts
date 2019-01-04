@@ -20,6 +20,7 @@ import { AddMaterialFinishingPriceComponent } from './add-material-finishing-pri
 import { CatalogComponent } from './catalogs/catalog/catalog.component';
 import { CollectionComponent } from './collections/collection/collection.component';
 
+
 @NgModule({
   declarations: [
     AppComponent,
