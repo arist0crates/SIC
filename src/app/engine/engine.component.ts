@@ -12,7 +12,7 @@ import { ShoppingListService } from '../shopping-list/shopping-list.service';
 })
 export class EngineComponent implements OnInit {
   private canEleId = 'renderCanvas';
-  private product;
+  private product ;
 
   constructor(private engServ: EngineService, private shopServ: ShoppingListService) { }
 
@@ -24,25 +24,25 @@ export class EngineComponent implements OnInit {
 
   bootStrap() : Product{
     //GAVETA
-    var height2 = 50;
-    var width2 = 250;
-    var depth2 = 250;
+    var height2 = 5;
+    var width2 = 25
+    var depth2 = 25;
     var category = new Category(1,"Gaveta",null);
     var dimension2 = new Dimension(null,height2,height2,width2,width2,depth2,depth2);
     var product2 = new Product("GavetaV2",null,null,null,dimension2,category);
 
     //GAVETA2
-    var height3 = 100;
-    var width3 = 200;
-    var depth3 = 250;
+    var height3 = 10;
+    var width3 = 20;
+    var depth3 = 25;
     var dimension3 = new Dimension(null,height3,height3,depth3,depth3,width3,width3);
     var product3 = new Product("GavetaV2",null,null,null,dimension3,category);
     var products = [product2,product3];
 
     //ARMARIO
-    var height = 500;
-    var width = 250;
-    var depth = 250;
+    var height = 50;
+    var width = 25;
+    var depth = 25;
     var dimension = new Dimension(null,height,height,width,width,depth,depth);
     var product = new Product(null,null,null,products,dimension,null);
     product.products
