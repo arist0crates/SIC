@@ -16,6 +16,7 @@ export class ShoppingListService {
   startedEditing = new Subject<number>();
   private products: Product[] = [];
   private order: Order = new Order();
+  private productReview;
 
   constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
@@ -90,6 +91,14 @@ export class ShoppingListService {
 
   showFailure() {
     this.toastr.success('Order needs to have Products!!!');
+  }
+
+  setProductForPreview(product : Product){
+    this.productReview = product;
+  }
+
+  getProductForPreview(){
+    return this.productReview;
   }
 
 }

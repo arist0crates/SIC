@@ -106,11 +106,11 @@ export class EngineService {
     var pos = 15;
     if(product.products != null){
       for(var v of product.products){
-        if(this.isDrawer(v) == true && pos < product.dimensions.maxHeight - v.dimensions.maxHeight/2){
-          pos = pos + v.dimensions.maxHeight/2;
+        if(this.isDrawer(v) == true && pos < (product.dimensions.maxHeight*10) - (v.dimensions.maxHeight*10)/2){
+          pos = pos + (v.dimensions.maxHeight*10)/2;
           index++;
           this.scene.add(new Drawer(this,v.dimensions.maxWidth,v.dimensions.maxHeight,v.dimensions.maxDepth,pos).content);
-          pos = pos + v.dimensions.maxHeight/2;
+          pos = pos + (v.dimensions.maxHeight*10)/2;
         }
       }
     }
@@ -129,13 +129,13 @@ export class EngineService {
   }
 
   animate(): void {
-    window.addEventListener('DOMContentLoaded', () => {
+    //window.addEventListener('DOMContentLoaded', () => {
       this.render();
-    });
+    //});
 
-    window.addEventListener('resize', () => {
+    //window.addEventListener('resize', () => {
       this.resize();
-    });
+    //});
   }
 
   render() {

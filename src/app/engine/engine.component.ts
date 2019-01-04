@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from '../products/product.model';
 import { Dimension } from '../dimensions/dimension.model';
 import { Category } from '../categories/category.model';
+import { ShoppingListService } from '../shopping-list/shopping-list.service';
 
 @Component({
   selector: 'app-engine',
@@ -11,11 +12,12 @@ import { Category } from '../categories/category.model';
 })
 export class EngineComponent implements OnInit {
   private canEleId = 'renderCanvas';
-  private product = this.bootStrap();
+  private product;
 
-  constructor(private engServ: EngineService) { }
+  constructor(private engServ: EngineService, private shopServ: ShoppingListService) { }
 
   ngOnInit() {
+    this.product = this.shopServ.getProductForPreview();
     this.engServ.createSceneProduct(this.canEleId,this.product);
     this.engServ.animate();
   }

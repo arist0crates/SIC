@@ -7,46 +7,51 @@ import { Wall } from './Wall';
 
 export function Closet(width, height, depth, inputColor, position, Children){
     // closet
+    //Dimension
+    var multi = 10;
+    var widthM = width * multi;
+    var heightM = height * multi;
+    var depthM = depth * multi;
     var closet = new THREE.Group();
     var loader = new THREE.TextureLoader();
     var woodTexture = loader.load( '../../../assets/textures/madeira.jpeg' );
     var thickness = 15;
-    var aux = (height-500)*0.5;
+    var aux = (heightM-500)*0.5;
     woodTexture.wrapS = THREE.RepeatWrapping;
     woodTexture.repeat.set( 3, 1 );
     woodTexture.anisotropy = 16;
 
-    var closetBack = new THREE.BoxBufferGeometry( width + thickness*2, height + thickness*2, thickness);
+    var closetBack = new THREE.BoxBufferGeometry( widthM + thickness*2, heightM + thickness*2, thickness);
     var closetBackMat = new THREE.MeshLambertMaterial({ map: woodTexture });
     var mesh = new THREE.Mesh( closetBack, closetBackMat );
     mesh.position.x = 0;
-    mesh.position.y = thickness + height/2;
-    mesh.position.z = - (depth/2) - (thickness/2);
+    mesh.position.y = thickness + heightM/2;
+    mesh.position.z = - (depthM/2) - (thickness/2);
     mesh.receiveShadow = true;
     mesh.castShadow = true;
     closet.add(mesh);
     //scene.add( mesh );
-    var closetRightSide = new THREE.BoxBufferGeometry( thickness, height + thickness*2, depth);
+    var closetRightSide = new THREE.BoxBufferGeometry( thickness, heightM + thickness*2, depthM);
     var closetRightSideMat = new THREE.MeshLambertMaterial({ map: woodTexture });
     var mesh = new THREE.Mesh( closetRightSide, closetRightSideMat );
-    mesh.position.x =  (width/2) + (thickness/2);
-    mesh.position.y = thickness + height/2;
+    mesh.position.x =  (widthM/2) + (thickness/2);
+    mesh.position.y = thickness + heightM/2;
     mesh.position.z = 0;
     mesh.receiveShadow = true;
     mesh.castShadow = true;
     closet.add(mesh);
     //scene.add( mesh );
-    var closetLeftSide = new THREE.BoxBufferGeometry( thickness, height + thickness*2, depth);
+    var closetLeftSide = new THREE.BoxBufferGeometry( thickness, heightM + thickness*2, depthM);
     var closetLeftSideMat = new THREE.MeshLambertMaterial({ map: woodTexture });
     var mesh = new THREE.Mesh( closetLeftSide, closetLeftSideMat );
-    mesh.position.x = - (width/2) - (thickness/2);
-    mesh.position.y = thickness + height/2;
+    mesh.position.x = - (widthM/2) - (thickness/2);
+    mesh.position.y = thickness + heightM/2;
     mesh.position.z = 0
     mesh.receiveShadow = true;
     mesh.castShadow = true;
     closet.add(mesh);
     //scene.add( mesh );*/
-    var closetBottom = new THREE.BoxBufferGeometry( width, thickness, depth);
+    var closetBottom = new THREE.BoxBufferGeometry( widthM, thickness, depthM);
     var closetBottomMat = new THREE.MeshLambertMaterial({ map: woodTexture });
     var mesh = new THREE.Mesh( closetBottom, closetBottomMat );
     mesh.position.x = 0;
@@ -56,11 +61,11 @@ export function Closet(width, height, depth, inputColor, position, Children){
     mesh.castShadow = true;
     closet.add(mesh);
     //scene.add( mesh );
-    var closetTop = new THREE.BoxBufferGeometry( width, thickness, depth);
+    var closetTop = new THREE.BoxBufferGeometry( widthM, thickness, depthM);
     var closetTopMat = new THREE.MeshLambertMaterial({ map: woodTexture});
     var mesh = new THREE.Mesh( closetTop, closetTopMat );
     mesh.position.x = 0;
-    mesh.position.y = thickness/2 + thickness + height;
+    mesh.position.y = thickness/2 + thickness + heightM;
     mesh.position.z = 0;
     mesh.receiveShadow = true;
     mesh.castShadow = true;
