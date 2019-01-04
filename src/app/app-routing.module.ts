@@ -19,11 +19,10 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', loadChildren: './products/products.module#ProductsModule' },
+  { path: 'products', loadChildren: './products/products.module#ProductsModule'},
   { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard] },
-  { path: 'engine', component: EngineComponent },
-  { path: 'order', component: OrderComponent },
-  { path: 'order-history', component: OrderHistoryComponent },
+  { path: 'engine', component: EngineComponent, canActivate: [AuthGuard] },
+  { path: 'order-history', component: OrderHistoryComponent,canActivate: [AuthGuard] },
   { path: 'materialFinish', component: AddMaterialFinishingPriceComponent },
   { path: 'calc-circuit', component: CalcCircuitComponent },
   { path: 'assign-orders-factories', component: AssignOrdersFactoriesComponent },
