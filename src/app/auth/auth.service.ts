@@ -9,7 +9,7 @@ import { stringify } from '@angular/core/src/util';
 @Injectable()
 export class AuthService {
   token: string;
-  private currentuserrole : string;
+  public currentuserrole : string;
 
   constructor(private router: Router) { }
   uid: string;
@@ -34,7 +34,7 @@ export class AuthService {
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(
         response => {
-
+          this.getCurrentUserRoles(firebase.auth().currentUser);
           this.router.navigate(['/']);
           firebase.auth().currentUser.getIdToken()
             .then(
@@ -48,7 +48,7 @@ export class AuthService {
       .catch(
         error => console.log(error)
       );
-    this.getCurrentUserRoles();
+      
   }
 
   logout() {
@@ -56,6 +56,7 @@ export class AuthService {
     this.token = null;
     const d = new Date().toString();
     this.log(firebase.auth().currentUser.uid, "logged out", d);
+    this.router.navigate(['']);
   }
 
   getToken() {
@@ -69,6 +70,32 @@ export class AuthService {
   isAuthenticated() {
     return this.token != null;
   }
+
+  isAuthenticatedAsCustomer(){
+    if(this.token != null && this.currentuserrole == "customer"){
+      return true;
+    }
+  }
+
+  isAuthenticatedAsOrderManager(){
+    if(this.token != null && this.currentuserrole == "orderManager"){
+      return true;
+    }
+  }
+
+  isAuthenticatedAsClericalWorker(){
+    if(this.token != null && this.currentuserrole == "clericalWorker"){
+      return true;
+    }
+  }
+
+  isAuthenticatedAsContentManager(){
+    if(this.token != null && this.currentuserrole == "contentManager"){
+      return true;
+    }
+  }
+
+  
   
   writeUserData(userId, email, customer, contentManager, orderManager, clericalWorker, nome) {
 
@@ -115,9 +142,9 @@ export class AuthService {
     this.logout();
   }
 
-  getCurrentUserRoles() {
+  getCurrentUserRoles(user:firebase.User) {
     //Get the user data
-    var myUserId = firebase.auth().currentUser.uid;
+    var myUserId = user.uid;
     var userrolesRef = firebase.database().ref('users/' + myUserId).orderByChild('roles');
 
     let getroles = function () {

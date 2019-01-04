@@ -24,6 +24,12 @@ export class Drawer{
             pos = 50;
         }
 
+        //Multi
+        var multi = 10;
+        var widthM = width * multi;
+        var heightM = height * multi;
+        var depthM = depth * multi;
+
         var drawer = new THREE.Group();
         var loader = new THREE.TextureLoader();
         var woodTexture = loader.load( '../../../assets/textures/madeira.jpeg' );
@@ -31,7 +37,7 @@ export class Drawer{
         woodTexture.repeat.set( 3, 1 );
         woodTexture.anisotropy = 16;
 
-        var drawerModel = new THREE.BoxBufferGeometry( width, height, depth);
+        var drawerModel = new THREE.BoxBufferGeometry( widthM, heightM, depthM);
         var drawerMat = new THREE.MeshLambertMaterial({ map: woodTexture });
         this.mesh = new THREE.Mesh( drawerModel, drawerMat );
         this.mesh.position.x = 0;
@@ -47,7 +53,7 @@ export class Drawer{
         var cylinder = new THREE.Mesh( handleModel, handelMat );	
         cylinder.position.x = 0;
         cylinder.position.y = pos;
-        cylinder.position.z = depth/2;
+        cylinder.position.z = depthM/2;
         cylinder.rotateZ(1.57);
         cylinder.receiveShadow = true;
         cylinder.castShadow = true;

@@ -12,8 +12,8 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class OrderHistoryService {
-
-  private url = 'http://sic-e.herokuapp.com/orders/orderHistory/'
+ // private url = 'http://localhost:8080/orders/orderHistory/' 
+ private url = 'http://sic-e.herokuapp.com/orders/orderHistory/'
   constructor(private http: HttpClient) { }
 
   getOrders(id:string): Observable<Order[]> {

@@ -16,6 +16,7 @@ export class ShoppingListService {
   startedEditing = new Subject<number>();
   private products: Product[] = [];
   private order: Order = new Order();
+  private productReview;
 
   constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
@@ -53,6 +54,7 @@ export class ShoppingListService {
 
   onOrder(orderForm: NgForm) {
     let token = this.authService.getToken();
+    console.log(token);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -69,6 +71,7 @@ export class ShoppingListService {
     console.log(this.order);
     this.order.deliveryAddress = deliveryAddress;
     this.order.orderItems = [...this.getProducts()];
+    this.order.datePlaced = new Date();
     var useruid =  this.authService.getCurrentUserUid;
     console.log('USERUID:' + useruid);
     this.order.customer = useruid();
@@ -90,6 +93,14 @@ export class ShoppingListService {
 
   showFailure() {
     this.toastr.success('Order needs to have Products!!!');
+  }
+
+  setProductForPreview(product : Product){
+    this.productReview = product;
+  }
+
+  getProductForPreview(){
+    return this.productReview;
   }
 
 }
