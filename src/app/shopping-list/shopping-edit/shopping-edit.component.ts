@@ -59,6 +59,11 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
       );
   }
 
+  inPreview(){
+    this.slService.setProductForPreview(this.editedItem);
+    this.router.navigate(['/engine'], { relativeTo: this.route });
+  }
+
   onSubmit(form: NgForm) {
     this.editedItem.dimensions.minHeight = this.heightSliderVal;
     this.editedItem.dimensions.minDepth = this.depthSliderVal;
