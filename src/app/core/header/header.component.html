@@ -8,7 +8,6 @@
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/products">Products</a></li>
         <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
-        <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/engine">Preview Your Product</a></li>
         <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
         <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
         <li *ngIf="isAuthenticatedAsContentManager()" routerLinkActive="active"><a routerLink="/catalog">Catalog</a></li>
