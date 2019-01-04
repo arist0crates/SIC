@@ -22,7 +22,8 @@
         <input type="checkbox" id="checkbox" name="checkbox" value="true"> I accept the  <a  routerLink="/signup/privacy">privacy policy</a>
         
       </div>
-      <button class="btn btn-primary" type="submit" [disabled]="!f.valid && !c.checked ">Sign Up</button>
+      <!-- <button class="btn btn-primary" type="submit" [disabled]="!f.valid && !c.checked ">Sign Up</button> -->
+      <button class="btn btn-primary" type="submit" [disabled]="!f.valid ">Sign Up</button>
     </form>
   </div>
 </div>

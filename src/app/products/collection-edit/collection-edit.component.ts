@@ -79,7 +79,7 @@ export class CollectionEditComponent implements OnInit {
       this.onCancel();
   
     }*/
-  onSubmit2(productForm: FormGroup) {
+  onSubmit2() {
 
     const newDimension = new DimensionDTO(
       this.productForm.value['productDimensionminHeight'],
