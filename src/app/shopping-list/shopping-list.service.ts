@@ -53,6 +53,7 @@ export class ShoppingListService {
 
   onOrder(orderForm: NgForm) {
     let token = this.authService.getToken();
+    console.log(token);
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type':  'application/json',
@@ -69,6 +70,7 @@ export class ShoppingListService {
     console.log(this.order);
     this.order.deliveryAddress = deliveryAddress;
     this.order.orderItems = [...this.getProducts()];
+    this.order.datePlaced = new Date();
     var useruid =  this.authService.getCurrentUserUid;
     console.log('USERUID:' + useruid);
     this.order.customer = useruid();
