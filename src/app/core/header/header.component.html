@@ -7,14 +7,14 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li routerLinkActive="active"><a routerLink="/products">Products</a></li>
-        <li routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
-        <li routerLinkActive="active"><a routerLink="/engine">Preview Your Product</a></li>
-        <li routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
-        <li routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
-        <li routerLinkActive="active"><a routerLink="/catalog">Catalog</a></li>
-        <li routerLinkActive="active"><a routerLink="/collection">Collection</a></li>
-        <li routerLinkActive="active"><a routerLink="/materialFinish">Materials And Finishes</a></li>
-        <li *ngIf="isAuthenticated()" routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
+        <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
+        <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/engine">Preview Your Product</a></li>
+        <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
+        <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
+        <li *ngIf="isAuthenticatedAsContentManager()" routerLinkActive="active"><a routerLink="/catalog">Catalog</a></li>
+        <li *ngIf="isAuthenticatedAsContentManager()" routerLinkActive="active"><a routerLink="/collection">Collection</a></li>
+        <li *ngIf="isAuthenticatedAsClericalWorker()" routerLinkActive="active"><a routerLink="/materialFinish">Materials And Finishes</a></li>
+        <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/order-history">Order History</a></li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         <ng-template [ngIf]="!isAuthenticated()">

@@ -7,6 +7,7 @@ import { HttpParams } from '@angular/common/http';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Subscription } from 'rxjs';
 import { ProductPrice } from 'src/app/prices/productprice.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -21,7 +22,7 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
-    private router: Router) {
+    private router: Router, private authService: AuthService) {
   }
 
   ngOnInit() {
@@ -73,6 +74,10 @@ export class ProductDetailComponent implements OnInit {
 
   onConsultPriceHistory(){
     this.router.navigate(['price-history'], { relativeTo: this.route });
+  }
+
+  isAuthenticatedAsClericalWorker(){
+    return this.authService.isAuthenticatedAsClericalWorker();
   }
 
 }

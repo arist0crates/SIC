@@ -9,7 +9,7 @@ import { AuthService } from '../../auth/auth.service';
   templateUrl: './header.component.html'
 })
 export class HeaderComponent {
-  private role : string;
+  public role : string;
   constructor(/*private dataStorageService: DataStorageService,*/
     private authService: AuthService) {
   }
@@ -33,6 +33,22 @@ export class HeaderComponent {
 
   isAuthenticated() {
     return this.authService.isAuthenticated();
+  }
+
+  isAuthenticatedAsCustomer(){
+    return this.authService.isAuthenticatedAsCustomer();
+  }
+
+  isAuthenticatedAsOrderManager(){
+    return this.authService.isAuthenticatedAsOrderManager();
+  }
+
+  isAuthenticatedAsClericalWorker(){
+    return this.authService.isAuthenticatedAsClericalWorker();
+  }
+
+  isAuthenticatedAsContentManager(){
+    return this.authService.isAuthenticatedAsContentManager();
   }
 
   getRole(){

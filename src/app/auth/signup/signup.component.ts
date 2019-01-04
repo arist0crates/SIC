@@ -17,7 +17,7 @@ export class SignupComponent implements OnInit {
   }
 
   onSignup(form: NgForm) {
-    if (this.checked = true) {
+    if (this.checked == true) {
       const email = form.value.email;
       const password = form.value.password;
       const name = form.value.name;
@@ -26,6 +26,14 @@ export class SignupComponent implements OnInit {
 
 
 
+  }
+  toggle(){
+    if(this.checked==true){
+      this.checked=false;
+    }
+    if(this.checked==false){
+      this.checked=true;
+    }
   }
 
 }
