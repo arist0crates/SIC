@@ -8,7 +8,22 @@ export class Drawer{
 
     private mesh;
 
-    constructor(World : EngineService){
+    constructor(World : EngineService,width,height,depth,pos){
+
+        //Default Value
+        if(width == null){
+            width = 300;
+        }
+        if(height == null){
+            height = 100;
+        }
+        if(depth == null){
+            depth = 200;
+        }
+        if(pos == null){
+            pos = 50;
+        }
+
         var drawer = new THREE.Group();
         var loader = new THREE.TextureLoader();
         var woodTexture = loader.load( '../../../assets/textures/madeira.jpeg' );
@@ -16,31 +31,32 @@ export class Drawer{
         woodTexture.repeat.set( 3, 1 );
         woodTexture.anisotropy = 16;
 
-        var drawerModel = new THREE.BoxBufferGeometry( 300, 100, 200);
+        var drawerModel = new THREE.BoxBufferGeometry( width, height, depth);
         var drawerMat = new THREE.MeshLambertMaterial({ map: woodTexture });
         this.mesh = new THREE.Mesh( drawerModel, drawerMat );
-        this.mesh.position.x = - 125;
-        this.mesh.position.y = -200;
-        this.mesh.position.z = 100;
+        this.mesh.position.x = 0;
+        this.mesh.position.y = pos;
+        this.mesh.position.z = 0;
         this.mesh.receiveShadow = true;
         this.mesh.castShadow = true;
 
         drawer.add(this.mesh);
 
         var handleModel = new THREE.CylinderGeometry( 5, 5, 20, 32 );
-        var handelMat = new THREE.MeshBasicMaterial( {color: 0xffff00} );
+        var handelMat = new THREE.MeshBasicMaterial( {color: 0x505050} );
         var cylinder = new THREE.Mesh( handleModel, handelMat );	
-        cylinder.position.x = - 125;
-        cylinder.position.y = -200;
-        cylinder.position.z = 200;
+        cylinder.position.x = 0;
+        cylinder.position.y = pos;
+        cylinder.position.z = depth/2;
+        cylinder.rotateZ(1.57);
         cylinder.receiveShadow = true;
         cylinder.castShadow = true;
         drawer.add(cylinder);
         
-        this.controller = new ObjectController (drawer, World.camera,
+        /*this.controller = new ObjectController (drawer, World.camera,
             World.cameraControls, World.renderer, World.render);
         
-        World.scene.add(this.controller.control);
+        World.scene.add(this.controller.control);*/
 
         this.content = drawer;
     }
