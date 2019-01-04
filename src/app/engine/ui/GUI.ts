@@ -191,7 +191,7 @@ export class GUI{
 		var drawers = addProducts.addFolder('Drawers');
 		var drawerUI = {
 			add: function () {
-				var drawer = new Drawer(World);
+				var drawer = new Drawer(World,null,null,null,null);
 				drawerList.push(drawer);
 				scene.add(drawerList[drawerList.length - 1].content);
 				console.log("Drawer created")

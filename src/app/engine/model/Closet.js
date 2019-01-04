@@ -5,8 +5,73 @@ import { Drawer } from './Drawer';
 import { Shelf } from './Shelf';
 import { Wall } from './Wall';
 
+export function Closet(width, height, depth, inputColor, position, Children){
+    // closet
+    var closet = new THREE.Group();
+    var loader = new THREE.TextureLoader();
+    var woodTexture = loader.load( '../../../assets/textures/madeira.jpeg' );
+    var thickness = 15;
+    var aux = (height-500)*0.5;
+    woodTexture.wrapS = THREE.RepeatWrapping;
+    woodTexture.repeat.set( 3, 1 );
+    woodTexture.anisotropy = 16;
 
-export function Closet(height, width, depth, inputColor, position, Children){
+    var closetBack = new THREE.BoxBufferGeometry( width + thickness*2, height + thickness*2, thickness);
+    var closetBackMat = new THREE.MeshLambertMaterial({ map: woodTexture });
+    var mesh = new THREE.Mesh( closetBack, closetBackMat );
+    mesh.position.x = 0;
+    mesh.position.y = thickness + height/2;
+    mesh.position.z = - (depth/2) - (thickness/2);
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    closet.add(mesh);
+    //scene.add( mesh );
+    var closetRightSide = new THREE.BoxBufferGeometry( thickness, height + thickness*2, depth);
+    var closetRightSideMat = new THREE.MeshLambertMaterial({ map: woodTexture });
+    var mesh = new THREE.Mesh( closetRightSide, closetRightSideMat );
+    mesh.position.x =  (width/2) + (thickness/2);
+    mesh.position.y = thickness + height/2;
+    mesh.position.z = 0;
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    closet.add(mesh);
+    //scene.add( mesh );
+    var closetLeftSide = new THREE.BoxBufferGeometry( thickness, height + thickness*2, depth);
+    var closetLeftSideMat = new THREE.MeshLambertMaterial({ map: woodTexture });
+    var mesh = new THREE.Mesh( closetLeftSide, closetLeftSideMat );
+    mesh.position.x = - (width/2) - (thickness/2);
+    mesh.position.y = thickness + height/2;
+    mesh.position.z = 0
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    closet.add(mesh);
+    //scene.add( mesh );*/
+    var closetBottom = new THREE.BoxBufferGeometry( width, thickness, depth);
+    var closetBottomMat = new THREE.MeshLambertMaterial({ map: woodTexture });
+    var mesh = new THREE.Mesh( closetBottom, closetBottomMat );
+    mesh.position.x = 0;
+    mesh.position.y = thickness/2;
+    mesh.position.z = 0;
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    closet.add(mesh);
+    //scene.add( mesh );
+    var closetTop = new THREE.BoxBufferGeometry( width, thickness, depth);
+    var closetTopMat = new THREE.MeshLambertMaterial({ map: woodTexture});
+    var mesh = new THREE.Mesh( closetTop, closetTopMat );
+    mesh.position.x = 0;
+    mesh.position.y = thickness/2 + thickness + height;
+    mesh.position.z = 0;
+    mesh.receiveShadow = true;
+    mesh.castShadow = true;
+    closet.add(mesh);
+
+    this.content = closet;
+}
+
+
+
+/*export function Closet(height, width, depth, inputColor, position, Children){
     // closet
     var closet = new THREE.Group();
     var loader = new THREE.TextureLoader();
@@ -116,7 +181,7 @@ export function Closet(height, width, depth, inputColor, position, Children){
         this.shelfList = [];
         this.wallList = [];
     }
-}
+}*/
 
 /*export class Closet{
     //------Arrays/stacks de gavetas, prateleiras e paredes. Sem isto, não dá para adicionar/remover de forma ordeira

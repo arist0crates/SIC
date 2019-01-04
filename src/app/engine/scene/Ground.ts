@@ -9,7 +9,7 @@ export class Ground{
 		groundTexture.anisotropy = 16;
 		var groundMaterial = new THREE.MeshLambertMaterial( { map: groundTexture } );
 		var mesh = new THREE.Mesh( new THREE.PlaneBufferGeometry( 20000, 20000 ), groundMaterial );
-		mesh.position.y = - 250;
+		mesh.position.y = 0;//-250
 		mesh.rotation.x = - Math.PI / 2;
 		mesh.receiveShadow = true;		
 		
