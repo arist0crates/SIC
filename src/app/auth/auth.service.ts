@@ -17,8 +17,7 @@ export class AuthService {
     firebase.auth().createUserWithEmailAndPassword(email, password).then((returnedUser) => {
       this.writeUserData(returnedUser.uid, email, true, false, false, false, nome);
       // this.log(returnedUser, "registered");
-      this.signinUser(email, password);
-      this.router.navigate(['/']);
+      this.router.navigate(['/signin']);
     })
       .catch(
         error => console.log(error)
