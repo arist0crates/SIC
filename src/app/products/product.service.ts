@@ -11,6 +11,7 @@ import { MaterialFinishPrice } from '../prices/materialfinishprice.model';
 //const headers = new HttpHeaders().set('Content-Type', 'application/json');
 import { ProductPrice } from '../prices/productprice.model';
 import { ProductRelation } from './product-relation.model';
+import { Config } from 'config';
 const headers = new HttpHeaders().set('Content-Type', 'application/json');
 
 
@@ -20,6 +21,14 @@ export class ProductService {
   productsChanged = new Subject<Product[]>();
 
   private products: Product[] = [];
+
+  private baseURL = Config.urlSiC_GC;  
+  private productURL = this.baseURL+'/api/Product';
+  private categoryURL = this.baseURL+'/api/Category';
+  private materialFinishURL = this.baseURL+'/api/MaterialFinish';
+  private materialFinishPriceURL = this.baseURL+'/api/MaterialFinishPrice';
+  private productPriceURL = this.baseURL+'/api/ProductPrice';
+  private productPriceProductURL = this.baseURL+'/api/ProductPrice/Product';
 
   constructor(private slService: ShoppingListService, public http: HttpClient, private authService: AuthService) { }
 
@@ -41,7 +50,7 @@ export class ProductService {
    
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
+      .get(this.productURL, httpOptions)
       .toPromise()
       .then(res => <Product[]>res)
       .then(data => { return data; });
@@ -59,7 +68,7 @@ export class ProductService {
     };
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product/' + index, httpOptions)
+      .get(this.productURL + '/' + index, httpOptions)
       .toPromise()
       .then(res => <Product>res)
       .then(data => { return data; });
@@ -76,7 +85,7 @@ export class ProductService {
     };
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/MaterialFinish/' + index, httpOptions)
+      .get(this.materialFinishURL + '/' + index, httpOptions)
       .toPromise()
       .then(res => <MaterialFinish>res)
       .then(data => { return data; });
@@ -99,7 +108,7 @@ export class ProductService {
       .http
      //.post('http://localhost:5000/api/Product', JSON.stringify(newProduct),
      //.post('https://localhost:5001/api/Product', JSON.stringify(newProduct),
-      .post('https://sicgc.azurewebsites.net/api/Product',JSON.stringify(newProduct),
+      .post(this.productURL,JSON.stringify(newProduct),
       httpOptions
         
       ).subscribe(data => {
@@ -128,7 +137,7 @@ export class ProductService {
   getCategory() {
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Category')
+      .get(this.categoryURL)
       .toPromise()
       .then(res => <Category[]>res)
       .then(data => { return data; });
@@ -137,7 +146,7 @@ export class ProductService {
   getMaterialFinish() {
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/MaterialFinish')
+      .get(this.materialFinishURL)
       .toPromise()
       .then(res => <MaterialFinish[]>res)
       .then(data => { return data; });
@@ -154,7 +163,7 @@ export class ProductService {
     return this
       .http
       //.post('http://localhost:5000/api/MaterialFinishPrice', JSON.stringify(price),
-      .post('https://sicgc.azurewebsites.net/api/MaterialFinishPrice', JSON.stringify(price),
+      .post(this.materialFinishPriceURL, JSON.stringify(price),
         httpOptions
 
       ).subscribe(data => {
@@ -175,7 +184,7 @@ export class ProductService {
     };
     return this
       .http
-      .post('https://sicgc.azurewebsites.net/api/ProductPrice',JSON.stringify(newProductPrice),
+      .post(this.productPriceURL,JSON.stringify(newProductPrice),
       {
         headers: headers
       }).subscribe(data => {
@@ -186,7 +195,7 @@ export class ProductService {
   getProductPrice(productId : number) {
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/ProductPrice/Product/' + productId)
+      .get(this.productPriceProductURL + '/' + productId)
       .toPromise()
       .then(res => <ProductPrice>res)
       .then(data => { return data; });

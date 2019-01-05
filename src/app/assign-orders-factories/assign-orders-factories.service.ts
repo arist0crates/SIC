@@ -15,7 +15,7 @@ const httpOptions = {
 })
 export class AssignOrdersService {
 
-  private url = Config.urlSiC_E + "/orderManager/assignOrders";
+  private url = Config.urlSiC_E + '/orderManager/assignOrders';
   constructor(private http: HttpClient) { }
   
   assignOrders() {
