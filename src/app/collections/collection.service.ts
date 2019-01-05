@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../auth/auth.service';
 import { Product } from '../products/product.model';
 import { Collection, CollectionDTO } from './collection.model';
+import { Config } from 'config';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,8 @@ export class CollectionService {
 
   private products: Product[] = [];
   private collectionproducts: Product[] = [];
-
+  private url = Config.urlSiC_GC;
+  
   constructor(public http: HttpClient, private authService: AuthService) { }
 
   setProducts(products: Product[]) {
@@ -31,7 +33,7 @@ export class CollectionService {
 
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product', httpOptions)
+      .get(this.url+'/api/Product', httpOptions)
       .toPromise()
       .then(res => <Product[]>res)
       .then(data => { return data; });
@@ -49,7 +51,7 @@ export class CollectionService {
     };
     return this
       .http
-      .get('https://sicgc.azurewebsites.net/api/Product/' + index, httpOptions)
+      .get(this.url+'/api/Product/' + index, httpOptions)
       .toPromise()
       .then(res => <Product>res)
       .then(data => { return data; });
@@ -69,7 +71,7 @@ export class CollectionService {
     return this
       .http
       //.post('https://localhost:5001/api/Collection', JSON.stringify(newCollection),
-      .post('https://sicgc.azurewebsites.net/api/Collection', JSON.stringify(newCollection),
+      .post(this.url+'/api/Collection', JSON.stringify(newCollection),
         httpOptions
 
       ).subscribe(data => {

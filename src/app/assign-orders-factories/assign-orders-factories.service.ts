@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
+import { Config } from '../../../config';
+
 import { OrderFactoryAssignment } from './order-factory-assignment.model';
 
 const httpOptions = {
@@ -13,9 +15,9 @@ const httpOptions = {
 })
 export class AssignOrdersService {
 
-  private url = 'http://sic-e.herokuapp.com/orderManager/assignOrders'
+  private url = Config.urlSiC_E + '/orderManager/assignOrders';
   constructor(private http: HttpClient) { }
-
+  
   assignOrders() {
     return this
       .http
@@ -23,11 +25,6 @@ export class AssignOrdersService {
       .toPromise()
       .then(res => <OrderFactoryAssignment[]>res)
       .then(data => { return data; });
-      //return this.http.get<any>(this.url);
   }
-
-  // assignOrders() : Observable<any> {
-  //   return this.http.get<any>(this.url);
-  // }
 }
 

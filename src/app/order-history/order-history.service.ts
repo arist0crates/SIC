@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { getLocaleExtraDayPeriods } from '@angular/common';
 import { Order } from "../orders/order.model";
 import { Observable } from 'rxjs';
+import { Config } from 'config';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -13,7 +14,7 @@ const httpOptions = {
 })
 export class OrderHistoryService {
  // private url = 'http://localhost:8080/orders/orderHistory/' 
- private url = 'http://sic-e.herokuapp.com/orders/orderHistory/'
+ private url = Config.urlSiC_E + '/orders/orderHistory/'
   constructor(private http: HttpClient) { }
 
   getOrders(id:string): Observable<Order[]> {

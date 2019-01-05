@@ -9,6 +9,7 @@ import { City } from '../cities/city.model';
 import { Location } from "../locations/location.model";
 import { DeliveryAddress } from "../deliveryAddresses/deliveryaddress.model";
 import { AuthService } from '../auth/auth.service';
+import { Config } from 'config';
 
 @Injectable()
 export class ShoppingListService {
@@ -17,6 +18,8 @@ export class ShoppingListService {
   private products: Product[] = [];
   private order: Order = new Order();
   private productReview;
+
+  private url = Config.urlSiC_E + '/orders';
 
   constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
@@ -77,7 +80,7 @@ export class ShoppingListService {
     this.order.customer = useruid();
     console.log(this.order.orderItems);
     if (this.order.orderItems.length > 0) {
-      this.http.post('https://sic-e.herokuapp.com/orders', this.order, httpOptions)
+      this.http.post(this.url, this.order, httpOptions)
         .toPromise()
         .catch();
       this.showSuccess();
