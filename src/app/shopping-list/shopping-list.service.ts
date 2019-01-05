@@ -10,6 +10,7 @@ import { Location } from "../locations/location.model";
 import { DeliveryAddress } from "../deliveryAddresses/deliveryaddress.model";
 import { AuthService } from '../auth/auth.service';
 import { Config } from 'config';
+import { MaterialFinish } from '../materialfinishes/materialfinish.model';
 
 @Injectable()
 export class ShoppingListService {
@@ -17,6 +18,7 @@ export class ShoppingListService {
   startedEditing = new Subject<number>();
   private products: Product[] = [];
   private order: Order = new Order();
+  private newMaterialFinishes : MaterialFinish[];
   private productReview;
 
   private url = Config.urlSiC_E + '/orders';
@@ -24,6 +26,15 @@ export class ShoppingListService {
   constructor(public http: HttpClient, private toastr: ToastrService, private authService: AuthService) { }
 
   getProducts() {
+    return this.products.slice();
+  }
+
+  getProductsWithOneMaterial(){
+    for(var i=0;i<this.products.length;i++){
+      this.newMaterialFinishes = [];
+      this.newMaterialFinishes.unshift(this.products[i].possibleMaterialFinishes[0]);
+      this.products[i].possibleMaterialFinishes = this.newMaterialFinishes;
+    }
     return this.products.slice();
   }
 
@@ -73,7 +84,7 @@ export class ShoppingListService {
     let deliveryAddress = new DeliveryAddress(city);
     console.log(this.order);
     this.order.deliveryAddress = deliveryAddress;
-    this.order.orderItems = [...this.getProducts()];
+    this.order.orderItems = [...this.getProductsWithOneMaterial()];
     this.order.datePlaced = new Date();
     var useruid =  this.authService.getCurrentUserUid;
     console.log('USERUID:' + useruid);

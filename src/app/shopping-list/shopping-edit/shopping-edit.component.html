@@ -35,6 +35,14 @@
       </div>
       <div class="row">
         <div class="col-sm-5 form-group">
+            <label>Choose Material</label>
+            <select id="dropbox" class="form-control">
+              <option *ngFor="let material of materials" [value]=material>{{material.material.name}} {{material.name}}</option>
+            </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-5 form-group">
           <label>Associated Products</label>
           <table class="table">
             <tr>
@@ -69,7 +77,6 @@
               <td>
                 <div class="col-xs-1">
                   <button type="button" class="btn btn-success" (click)="onAddSubProduct(i)">v</button>
-                  
                 </div>
               </td>
             </tr>

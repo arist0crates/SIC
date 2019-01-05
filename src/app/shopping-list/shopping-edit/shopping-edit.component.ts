@@ -11,6 +11,7 @@ import { ShoppingListService } from '../shopping-list.service';
 import { Product } from 'src/app/products/product.model';
 import { ProductService } from 'src/app/products/product.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { MaterialFinish } from 'src/app/materialfinishes/materialfinish.model';
 
 @Component({
   selector: 'app-shopping-edit',
@@ -28,6 +29,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   depthSliderVal: number;
   widthSliderVal: number;
   products: Product[];
+  materials: MaterialFinish[];
 
   constructor(private slService: ShoppingListService, private productService: ProductService,
     private router: Router,
@@ -49,6 +51,8 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
           this.editMode = true;
           this.editedItem = this.slService.getProduct(index);
           this.finalProduct = this.slService.getProduct(index);
+          this.materials = this.finalProduct.possibleMaterialFinishes;
+          console.log(this.materials);
           this.heightSliderVal = this.editedItem.dimensions.minHeight;
           this.depthSliderVal = this.editedItem.dimensions.minDepth;
           this.widthSliderVal = this.editedItem.dimensions.minWidth;
@@ -72,6 +76,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.editedItem.dimensions.maxDepth = this.depthSliderVal;
     this.editedItem.dimensions.maxWidth = this.widthSliderVal;
     const value = form.value;
+    this.selectMaterial();
     console.log("NAME:" + value.name);
     const newProduct = new Product(value.name, this.editedItem.productId, this.editedItem.possibleMaterialFinishes, this.editedItem.products, this.editedItem.dimensions, this.editedItem.category);
     console.log(newProduct.name);
@@ -83,7 +88,6 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.editMode = false;
     form.reset();
     this.widthSliderVal = 0;
-
     this.ngOnInit();
   }
 
@@ -121,6 +125,14 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  selectMaterial(){
+    var aux = (<HTMLSelectElement>document.getElementById('dropbox')).selectedIndex;
+    var materialAux = this.editedItem.possibleMaterialFinishes[aux];
+    this.editedItem.possibleMaterialFinishes.splice(aux,1);
+    this.editedItem.possibleMaterialFinishes.unshift(materialAux);
+    console.log(this.editedItem.possibleMaterialFinishes);
   }
 
 }
