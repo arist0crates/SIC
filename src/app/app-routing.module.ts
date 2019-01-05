@@ -21,7 +21,7 @@ import { CategoryComponent } from './categories/category/category.component';
 
 const appRoutes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'products', loadChildren: './products/products.module#ProductsModule'},
+  { path: 'products', loadChildren: './products/products.module#ProductsModule', canActivate: [AuthGuard] },
   { path: 'shopping-list', component: ShoppingListComponent, canActivate: [AuthGuard] },
   { path: 'engine', component: EngineComponent, canActivate: [AuthGuard] },
   { path: 'order-history', component: OrderHistoryComponent,canActivate: [AuthGuard] },
