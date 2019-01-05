@@ -19,6 +19,7 @@ export class ProductDetailComponent implements OnInit {
   subproducts: Product[];
   id: number;
   price: ProductPrice;
+  private isAuthorized = false;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,
@@ -26,6 +27,7 @@ export class ProductDetailComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.isAuthenticatedAsClericalWorker();
     /*console.log("routeeee: "+this.router.url.split('/').pop());
     this.id = parseInt(this.router.url.split('/').pop());
     this.productService.getProduct(this.id)
@@ -77,7 +79,11 @@ export class ProductDetailComponent implements OnInit {
   }
 
   isAuthenticatedAsClericalWorker(){
-    return this.authService.isAuthenticatedAsClericalWorker();
+    if(this.authService.isAuthenticatedAsClericalWorker()){
+      this.isAuthorized = true;
+    }else{
+      this.isAuthorized = false;
+    }
   }
 
 }

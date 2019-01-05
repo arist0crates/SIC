@@ -18,7 +18,7 @@ const productsRoutes: Routes = [
       { path: ':id', component: ProductDetailComponent },
       { path: ':id/edit', component: ProductEditComponent, canActivate: [AuthGuard] },
       { path: ':id/price', component: ProductPriceComponent, canActivate: [AuthGuard] },
-      { path: ':id/price-history', component: PriceHistoryComponent }
+      { path: ':id/price-history', component: PriceHistoryComponent, canActivate: [AuthGuard] }
     ]
   },
 ];

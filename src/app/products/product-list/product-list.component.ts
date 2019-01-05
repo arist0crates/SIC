@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 
 import { Product } from '../product.model';
 import { ProductService } from '../product.service';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-product-list',
@@ -13,13 +14,16 @@ import { ProductService } from '../product.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[];
   subscription: Subscription;
+  private isAuthorized = false;
 
   constructor(private productService: ProductService,
     private router: Router,
-    private route: ActivatedRoute) {
+    private route: ActivatedRoute,
+    private authService: AuthService) {
   }
 
   ngOnInit() {
+    this.isAuthenticatedAsCM();
     this.route.params
       .subscribe(() => {
         this.productService.getProducts()
@@ -54,5 +58,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnDestroy() {
     this.subscription.unsubscribe();
+  }
+
+  isAuthenticatedAsCM(){
+    if(this.authService.isAuthenticatedAsContentManager()){
+      this.isAuthorized = true;
+    }else{
+      this.isAuthorized = false;
+    }
   }
 }

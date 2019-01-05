@@ -102,8 +102,8 @@
           <ul class="dropdown-menu">
             <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">To Shopping List</a></li>
             <li><a (click)="onAddToShoppingList()" style="cursor: pointer;">Edit Product</a></li>
-            <li><a (click)="onEditProductPrice()" style="cursor: pointer;">Edit Product Price</a></li>
-            <li><a (click)="onConsultPriceHistory()" style="cursor: pointer;">Consult Price History</a></li>
+            <li><a *ngIf="this.isAuthorized" (click)="onEditProductPrice()" style="cursor: pointer;">Edit Product Price</a></li>
+            <li><a *ngIf="this.isAuthorized" (click)="onConsultPriceHistory()" style="cursor: pointer;">Consult Price History</a></li>
           </ul>
         </div>
       </div>
