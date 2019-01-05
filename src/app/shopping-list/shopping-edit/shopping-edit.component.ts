@@ -65,6 +65,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
 
   inPreview(){
     this.slService.setProductForPreview(this.editedItem);
+    console.log("okkkkk" + this.editedItem.products.length);
     this.router.navigate(['/engine'], { relativeTo: this.route });
   }
 
@@ -108,6 +109,7 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
   }
   onAddSubProduct(index: number) {
     this.editedItem.products.push(this.products[index]);
+    this.slService.addProduct(this.products[index]);
   }
 
   onHeightSliderChange(val) {

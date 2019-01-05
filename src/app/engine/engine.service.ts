@@ -67,9 +67,7 @@ export class EngineService {
       product.dimensions.maxWidth*this.factMulti,
       product.dimensions.maxHeight*this.factMulti,
       product.dimensions.maxDepth*this.factMulti, 
-      product.possibleMaterialFinishes,
-      null,
-      null);
+      product.possibleMaterialFinishes[0].material.name + " " + product.possibleMaterialFinishes[0].name);
 
     this.verifProduct(product);
     this.scene.add(this.closet.content);
@@ -81,10 +79,12 @@ export class EngineService {
     var pos = 15;
     if(product.products != null){
       for(var v of product.products){
-        if(this.isDrawer(v) == true && pos < (product.dimensions.maxHeight*this.factMulti) - (v.dimensions.maxHeight*this.factMulti)/2){
+        console.log(v.name);
+        if(this.isDrawer(v) == true){
           pos = pos + (v.dimensions.maxHeight*this.factMulti)/2;
           index++;
-          this.scene.add(new Drawer(this,v.dimensions.maxWidth*this.factMulti,v.dimensions.maxHeight*this.factMulti,v.dimensions.maxDepth*this.factMulti,pos).content);
+          var texture = v.possibleMaterialFinishes[0].material.name + " " + v.possibleMaterialFinishes[0].name;
+          this.scene.add(new Drawer(this,v.dimensions.maxWidth*this.factMulti,v.dimensions.maxHeight*this.factMulti,v.dimensions.maxDepth*this.factMulti,pos,texture).content);
           pos = pos + (v.dimensions.maxHeight*this.factMulti)/2;
         }
       }
@@ -93,6 +93,9 @@ export class EngineService {
   
   isDrawer(value : Product): boolean{
     var category = value.category;
+    if(category == null){
+      return false;
+    }
     while(category.father != null){
       category = category.father;
     }

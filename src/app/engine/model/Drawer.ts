@@ -8,7 +8,7 @@ export class Drawer{
 
     private mesh;
 
-    constructor(World : EngineService,width,height,depth,pos){
+    constructor(World : EngineService,width,height,depth,pos,textureN){
 
         //Default Value
         if(width == null){
@@ -23,16 +23,25 @@ export class Drawer{
         if(pos == null){
             pos = 50;
         }
-
+        
         var drawer = new THREE.Group();
         var loader = new THREE.TextureLoader();
-        var woodTexture = loader.load( '../../../assets/textures/madeira.jpeg' );
-        woodTexture.wrapS = THREE.RepeatWrapping;
-        woodTexture.repeat.set( 3, 1 );
-        woodTexture.anisotropy = 16;
+        var texture = loader.load( '../../../assets/textures/madeira.jpeg' );
+        if(textureN == "Madeira Polida"){
+            texture = loader.load( '../../../assets/textures/madeiraPolida.jpg' );
+        }else if(textureN == "Metal Escovado"){
+            texture = loader.load( '../../../assets/textures/metal.jpg' );
+        }else if(textureN == "Plastico Picado"){
+            texture = loader.load( '../../../assets/textures/plastico.jpg' );
+        }
+
+        
+        texture.wrapS = THREE.RepeatWrapping;
+        texture.repeat.set( 3, 1 );
+        texture.anisotropy = 16;
 
         var drawerModel = new THREE.BoxBufferGeometry( width, height, depth);
-        var drawerMat = new THREE.MeshLambertMaterial({ map: woodTexture });
+        var drawerMat = new THREE.MeshLambertMaterial({ map: texture });
         this.mesh = new THREE.Mesh( drawerModel, drawerMat );
         this.mesh.position.x = 0;
         this.mesh.position.y = pos;
