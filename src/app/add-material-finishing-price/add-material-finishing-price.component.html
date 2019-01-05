@@ -1,6 +1,6 @@
 
 <app-material></app-material>
-
+<h2>Add Material Finish Price</h2>
 <div class="row" *ngFor="let materialFinishing2 of materialFinishings; let i = index">
   <div class="col-xs-12">
     <a style="cursor: pointer;" routerLinkActive="active" class="list-group-item clearfix" (click)="select(i+1)">
@@ -11,6 +11,7 @@
   </div>
 </div>
 <div>
+  <br>
   <label>
     Material and Finish combined price
   </label>
@@ -27,3 +28,5 @@
   <br>
   <button type="button" class="btn"  (click)="addPrice()"> Ok </button>
 </div>
+<br>
+<br>
