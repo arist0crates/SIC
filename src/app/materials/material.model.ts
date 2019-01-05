@@ -1,11 +1,9 @@
 export class Material {
-    public MaterialId: number;
     public name: string;
-  
-    constructor(MaterialId: number, name: string) {
-      this.MaterialId = MaterialId;
+    public MaterialId: number;
+    
+    constructor(name: string) {
       this.name = name;
-        
     }
   }
   

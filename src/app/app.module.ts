@@ -1,7 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule, HttpClient } from '@angular/common/http'
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
@@ -19,6 +19,7 @@ import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.componen
 import { AddMaterialFinishingPriceComponent } from './add-material-finishing-price/add-material-finishing-price.component';
 import { CatalogComponent } from './catalogs/catalog/catalog.component';
 import { CollectionComponent } from './collections/collection/collection.component';
+import { MaterialComponent } from './materials/material/material.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { CollectionComponent } from './collections/collection/collection.compone
     PrivacyPolicyComponent,
     AddMaterialFinishingPriceComponent,
     CatalogComponent,
-    CollectionComponent
+    CollectionComponent,
+    MaterialComponent
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import { CollectionComponent } from './collections/collection/collection.compone
     ShoppingListModule,
     AuthModule,
     CoreModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   bootstrap: [AppComponent]
 })

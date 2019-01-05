@@ -31,41 +31,10 @@ export class EngineService {
   private musicURL = '../../assets/sound/valkyries-rock.mp3';
   //private musicURL = 'https://incompetech.com/music/royalty-free/mp3-royaltyfree/Local%20Forecast%20-%20Elevator.mp3';
 
+  private factMulti = 10;//1 m - 10 cm
   private closet : Closet;
-  private drawer : Drawer;
   
   public GUI : GUI;
-
-  createScene(elementId: string): void {
-    // The first step is to get the reference of the canvas element from our HTML document
-    this.canvas = <HTMLCanvasElement>document.getElementById(elementId);
-
-    this.renderer = Renderer.createRenderer(this.canvas);
-
-    //--------Camera. Inclui "cameraControls", mas não são obrigatorios
-    this.camera = Camera.createCamera();
-    // create the scene
-    this.scene = Scene.createScene();
-    this.scene.add(this.camera);
-
-    this.cameraControls = Camera.createCameraControls(this.camera,
-      this.renderer, this.render);
-
-    this.ambientLight = Lights.createAmbientLight();
-    this.scene.add( this.ambientLight );
-    this.light = Lights.createDirectionalLight();
-    this.scene.add( this.light );
-
-    this.ground = Ground.createGround('../../assets/textures/grasslight-big.jpg');
-    this.scene.add( this.ground );
-    
-    this.music = Audio.createAudio(this.musicURL, this.camera);
-
-    this.closet = new Closet(null, null, null, null, null, null);
-    this.scene.add(this.closet.content);
-
-    this.GUI = new GUI(this, this.closet);
-  }
 
   //NEW METHOD
   createSceneProduct(elementId: string,product: Product): void {
@@ -94,10 +63,16 @@ export class EngineService {
     this.music = Audio.createAudio(this.musicURL, this.camera);
 
     //500/200/200
-    this.closet = new Closet(product.dimensions.maxWidth,product.dimensions.maxHeight, product.dimensions.maxDepth, null, null, null);
+    this.closet = new Closet(
+      product.dimensions.maxWidth*this.factMulti,
+      product.dimensions.maxHeight*this.factMulti,
+      product.dimensions.maxDepth*this.factMulti, 
+      product.possibleMaterialFinishes,
+      null,
+      null);
+
     this.verifProduct(product);
     this.scene.add(this.closet.content);
-
     this.GUI = new GUI(this, this.closet);
   }
 
@@ -106,17 +81,29 @@ export class EngineService {
     var pos = 15;
     if(product.products != null){
       for(var v of product.products){
-        if(this.isDrawer(v) == true && pos < (product.dimensions.maxHeight*10) - (v.dimensions.maxHeight*10)/2){
-          pos = pos + (v.dimensions.maxHeight*10)/2;
+        if(this.isDrawer(v) == true && pos < (product.dimensions.maxHeight*this.factMulti) - (v.dimensions.maxHeight*this.factMulti)/2){
+          pos = pos + (v.dimensions.maxHeight*this.factMulti)/2;
           index++;
-          this.scene.add(new Drawer(this,v.dimensions.maxWidth,v.dimensions.maxHeight,v.dimensions.maxDepth,pos).content);
-          pos = pos + (v.dimensions.maxHeight*10)/2;
+          this.scene.add(new Drawer(this,v.dimensions.maxWidth*this.factMulti,v.dimensions.maxHeight*this.factMulti,v.dimensions.maxDepth*this.factMulti,pos).content);
+          pos = pos + (v.dimensions.maxHeight*this.factMulti)/2;
         }
       }
     }
   }
   
   isDrawer(value : Product): boolean{
+    var category = value.category;
+    while(category.father != null){
+      category = category.father;
+    }
+    if(category.name == "Gaveta"){
+      return true;
+    }else{
+      return false;
+    }
+  }
+
+  isShelf(value : Product): boolean{
     var category = value.category;
     while(category.father != null){
       category = category.father;
