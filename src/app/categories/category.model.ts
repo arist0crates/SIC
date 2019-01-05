@@ -3,8 +3,7 @@ export class Category {
     public name: string;
     public father: Category;
   
-    constructor(CategoryId: number, name: string, father: Category) {
-      this.CategoryId = CategoryId;
+    constructor(name: string, father: Category) {
       this.name = name;
       this.father = father;
         

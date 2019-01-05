@@ -1,0 +1,26 @@
+<h1>Category</h1>
+<br>
+<br>
+<h2>Create Category</h2>
+
+<div>
+  <form [formGroup]="categoryForm">
+    <br>
+    <label>Name:</label>
+    <input type="text" id="categoryName" formControlName="categoryName" class="form-control">
+    <br>
+    <label>Category Father:</label>
+    <br>
+      <select #state_id id="state_id">
+        <option value="-1">Without Father Category</option>
+        <option *ngFor="let category of lCategories; let i = index"
+        [value]="i">
+        {{category.name}} 
+      </option>
+      </select>
+      <br>
+      <br>
+      <button type="button" class="btn btn-success" (click)="onCreate(state_id.value)">Create</button>
+
+  </form>
+</div>

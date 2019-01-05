@@ -20,6 +20,7 @@ import { AddMaterialFinishingPriceComponent } from './add-material-finishing-pri
 import { CatalogComponent } from './catalogs/catalog/catalog.component';
 import { CollectionComponent } from './collections/collection/collection.component';
 import { MaterialComponent } from './materials/material/material.component';
+import { CategoryComponent } from './categories/category/category.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { MaterialComponent } from './materials/material/material.component';
     AddMaterialFinishingPriceComponent,
     CatalogComponent,
     CollectionComponent,
-    MaterialComponent
+    MaterialComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,

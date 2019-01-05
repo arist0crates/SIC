@@ -16,6 +16,7 @@ import { CatalogComponent } from './catalogs/catalog/catalog.component';
 import { CollectionComponent } from './collections/collection/collection.component';
 import { PrivacyPolicyComponent } from './privacy-policy/privacy-policy.component';
 import { MaterialComponent } from './materials/material/material.component';
+import { CategoryComponent } from './categories/category/category.component';
 
 
 const appRoutes: Routes = [
@@ -30,7 +31,8 @@ const appRoutes: Routes = [
   { path: 'signup/privacy', component: PrivacyPolicyComponent },
   { path: 'catalog', component: CatalogComponent },
   { path: 'collection', component: CollectionComponent },
-  { path: 'material', component: MaterialComponent }
+  { path: 'material', component: MaterialComponent },
+  { path: 'category', component: CategoryComponent }
 ];
 
 @NgModule({
