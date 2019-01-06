@@ -1,14 +1,12 @@
 import { AppPage } from './app.po';
-
+import { element, by } from 'protractor';
+import { browser } from 'protractor';
 describe('workspace-project App', () => {
-  let page: AppPage;
+  browser.get('http://localhost:4200');
 
-  beforeEach(() => {
-    page = new AppPage();
-  });
-
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+  it('should change to Register view', () => {
+    var register = element(by.id('register'));
+    register.click();
+    expect(browser.getCurrentUrl()).toEqual('http://localhost:4200/signin');
   });
 });
