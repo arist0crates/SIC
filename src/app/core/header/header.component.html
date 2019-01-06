@@ -6,7 +6,7 @@
 
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
-        <li routerLinkActive="active"><a routerLink="/products">Products</a></li>
+        <li routerLinkActive="active"><a id="products" routerLink="/products">Products</a></li>
         <li *ngIf="isAuthenticatedAsCustomer()" routerLinkActive="active"><a routerLink="/shopping-list">Shopping List</a></li>
         <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/calc-circuit">Calc Circuit</a></li>
         <li *ngIf="isAuthenticatedAsOrderManager()" routerLinkActive="active"><a routerLink="/assign-orders-factories">Assign Orders</a></li>
