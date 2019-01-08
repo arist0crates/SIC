@@ -19,7 +19,7 @@ export class ProductDetailComponent implements OnInit {
   subproducts: Product[];
   id: number;
   price: ProductPrice;
-  private isAuthorized = false;
+  isAuthorized = false;
 
   constructor(private productService: ProductService,
     private route: ActivatedRoute,

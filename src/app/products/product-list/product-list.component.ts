@@ -14,7 +14,7 @@ import { AuthService } from 'src/app/auth/auth.service';
 export class ProductListComponent implements OnInit, OnDestroy {
   products: Product[];
   subscription: Subscription;
-  private isAuthorized = false;
+  isAuthorized = false;
 
   constructor(private productService: ProductService,
     private router: Router,
